@@ -523,6 +523,50 @@ h3 {
   border-color: rgba(20, 125, 116, 0.3);
 }
 
+.section-action {
+  margin-top: 28px;
+}
+
+.projects-page {
+  min-height: 100vh;
+}
+
+.page-heading {
+  max-width: 780px;
+}
+
+.page-heading p {
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.75;
+  margin-bottom: 38px;
+}
+
+.project-grid--archive {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.project-coming-soon {
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px dashed rgba(20, 125, 116, 0.28);
+  border-radius: 8px;
+  margin-top: 18px;
+  padding: 24px;
+}
+
+.project-coming-soon p {
+  color: var(--ink);
+  font-family: "Syne", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.project-coming-soon span {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
 .text-link {
   align-items: center;
   color: var(--accent);

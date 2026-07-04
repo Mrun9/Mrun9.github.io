@@ -3,7 +3,7 @@ export const navItems = [
   { id: "skills", label: "Skills" },
   { id: "education", label: "Education" },
   { id: "experience", label: "Experience" },
-  { id: "projects", label: "Projects" },
+  { id: "featured-projects", label: "Projects" },
   { id: "publications", label: "Papers" },
   { id: "contact", label: "Contact" },
 ];
@@ -164,7 +164,7 @@ export const projects = [
     description:
       "A two-stage jailbreak-prompt detection system combining a FAISS semantic cache for sub-millisecond similarity search with a fine-tuned transformer classifier, deployed as a browser extension monitoring live LLM traffic.",
     tags: ["DistilBERT", "FAISS", "Adversarial ML", "Browser Extension", "Python"],
-    github: "https://github.com/Mrun9/",
+    github: "https://github.com/Mrun9/Jailbreaking-Detection.git",
     featured: true,
   },
   {
@@ -172,14 +172,16 @@ export const projects = [
     description:
       "CNN-LSTM model in PyTorch on MFCC features for real-time speech anxiety detection. Achieved 96% recall with 1.2-1.5s inference latency on rolling 5-second audio windows.",
     tags: ["PyTorch", "CNN-LSTM", "Whisper", "SHAP", "Docker", "Grafana"],
-    github: "https://github.com/Mrun9/",
+    github: "https://github.com/Mrun9/Co-Wingman-AIS-Project.git",
+    featured: true,
   },
   {
     title: "Currency Exchange Rate Prediction via Sentiment Analysis",
     description:
       "Leveraged 10+ years of historical data with Decision Tree Regressors to predict USD-to-INR rates at 90% testing accuracy, plus an NLP pipeline analyzing 2,000+ tweets.",
     tags: ["Scikit-learn", "NLTK", "Sentiment Analysis", "Streamlit"],
-    github: "https://github.com/Mrun9/",
+    github: "https://github.com/Mrun9/Speech_Alchemy",
+    featured: true,
   },
 ];
 

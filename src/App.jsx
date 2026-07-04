@@ -60,23 +60,26 @@ function CustomCursor() {
       frameId = requestAnimationFrame(animateRing);
     };
 
-    const enlarge = () => ring.classList.add("cursor-ring--active");
-    const shrink = () => ring.classList.remove("cursor-ring--active");
-    const interactiveElements = document.querySelectorAll("a, button");
+    const enlarge = (event) => {
+      if (event.target.closest("a, button")) {
+        ring.classList.add("cursor-ring--active");
+      }
+    };
+    const shrink = (event) => {
+      if (event.target.closest("a, button")) {
+        ring.classList.remove("cursor-ring--active");
+      }
+    };
 
     document.addEventListener("mousemove", moveDot);
-    interactiveElements.forEach((element) => {
-      element.addEventListener("mouseenter", enlarge);
-      element.addEventListener("mouseleave", shrink);
-    });
+    document.addEventListener("mouseover", enlarge);
+    document.addEventListener("mouseout", shrink);
     animateRing();
 
     return () => {
       document.removeEventListener("mousemove", moveDot);
-      interactiveElements.forEach((element) => {
-        element.removeEventListener("mouseenter", enlarge);
-        element.removeEventListener("mouseleave", shrink);
-      });
+      document.removeEventListener("mouseover", enlarge);
+      document.removeEventListener("mouseout", shrink);
       cancelAnimationFrame(frameId);
     };
   }, []);
@@ -89,8 +92,16 @@ function CustomCursor() {
   );
 }
 
-function SidebarNav({ activeSection }) {
+function SidebarNav({ activeSection, currentPage, navigateTo }) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleNavigation = (event, href) => {
+    setIsOpen(false);
+    if (!href.startsWith("/")) return;
+
+    event.preventDefault();
+    navigateTo(href);
+  };
 
   return (
     <>
@@ -104,33 +115,53 @@ function SidebarNav({ activeSection }) {
       </button>
 
       <aside className={`sidebar ${isOpen ? "sidebar--open" : ""}`}>
-        <a className="brand hover-grow" href="#hero" onClick={() => setIsOpen(false)}>
+        <a
+          className="brand hover-grow"
+          href="/"
+          onClick={(event) => handleNavigation(event, "/")}
+        >
           <span>MV</span>
           <small>AI/ML Portfolio</small>
         </a>
 
         <nav className="side-nav" aria-label="Main navigation">
-          {navItems.map((item, index) => (
-            <a
-              className={`side-nav__link hover-grow ${
-                activeSection === item.id ? "side-nav__link--active" : ""
-              }`}
-              href={`#${item.id}`}
-              key={item.id}
-              onClick={() => setIsOpen(false)}
-            >
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              {item.label}
-            </a>
-          ))}
+          {navItems.map((item, index) => {
+            const href = currentPage === "home" ? `#${item.id}` : `/#${item.id}`;
+
+            return (
+              <a
+                className={`side-nav__link hover-grow ${
+                  currentPage === "home" && activeSection === item.id
+                    ? "side-nav__link--active"
+                    : ""
+                }`}
+                href={href}
+                key={item.id}
+                onClick={(event) => handleNavigation(event, href)}
+              >
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                {item.label}
+              </a>
+            );
+          })}
+          <a
+            className={`side-nav__link hover-grow ${
+              currentPage === "projects" ? "side-nav__link--active" : ""
+            }`}
+            href="/projects"
+            onClick={(event) => handleNavigation(event, "/projects")}
+          >
+            <span>{String(navItems.length + 1).padStart(2, "0")}</span>
+            All Projects
+          </a>
         </nav>
 
         <div className="sidebar__footer">
-          <a className="icon-link hover-grow" href={profile.github} target="_blank">
+          <a className="icon-link hover-grow" href={profile.github} rel="noreferrer" target="_blank">
             <Github size={18} />
             GitHub
           </a>
-          <a className="icon-link hover-grow" href={profile.linkedin} target="_blank">
+          <a className="icon-link hover-grow" href={profile.linkedin} rel="noreferrer" target="_blank">
             <Linkedin size={18} />
             LinkedIn
           </a>
@@ -175,10 +206,10 @@ function Hero() {
           Notre Dame CRC.
         </p>
         <div className="hero__actions">
-          <a className="button button--primary hover-grow" href="#projects">
+          <a className="button button--primary hover-grow" href="#featured-projects">
             View Work
           </a>
-          <a className="button button--ghost hover-grow" href={profile.resume} target="_blank">
+          <a className="button button--ghost hover-grow" href={profile.resume} rel="noreferrer" target="_blank">
             Resume <ArrowUpRight size={17} />
           </a>
         </div>
@@ -271,7 +302,7 @@ function Timeline({ items }) {
           {item.links ? (
             <div className="timeline-links">
               {item.links.map((link) => (
-                <a className="text-link hover-grow" href={link.href} key={link.href} target="_blank">
+                <a className="text-link hover-grow" href={link.href} key={link.href} rel="noreferrer" target="_blank">
                   {link.label} <ArrowUpRight size={16} />
                 </a>
               ))}
@@ -303,33 +334,78 @@ function Experience() {
   );
 }
 
-function Projects() {
+function ProjectCard({ project, index }) {
   return (
-    <section className="section-shell" id="projects">
-      <SectionLabel number="05">Projects</SectionLabel>
-      <h2>Things I have built.</h2>
-      <div className="project-grid">
-        {projects.map((project, index) => (
-          <article
-            className={`project-card ${project.featured ? "project-card--featured" : ""}`}
-            key={project.title}
-          >
-            <p className="project-card__number">0{index + 1}</p>
-            <h3>{project.title}</h3>
-            <p>{project.description}</p>
-            <div className="tag-list">
-              {project.tags.map((tag) => (
-                <span className="tag" key={tag}>
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <a className="text-link hover-grow" href={project.github} target="_blank">
-              GitHub <ArrowUpRight size={16} />
-            </a>
-          </article>
+    <article
+      className={`project-card ${project.featured ? "project-card--featured" : ""}`}
+      key={project.title}
+    >
+      <p className="project-card__number">{String(index + 1).padStart(2, "0")}</p>
+      <h3>{project.title}</h3>
+      <p>{project.description}</p>
+      <div className="tag-list">
+        {project.tags.map((tag) => (
+          <span className="tag" key={tag}>
+            {tag}
+          </span>
         ))}
       </div>
+      <a className="text-link hover-grow" href={project.github} rel="noreferrer" target="_blank">
+        GitHub <ArrowUpRight size={16} />
+      </a>
+    </article>
+  );
+}
+
+function FeaturedProjects({ navigateTo }) {
+  const featuredProjects = projects.filter((project) => project.featured).slice(0, 4);
+
+  return (
+    <section className="section-shell" id="featured-projects">
+      <SectionLabel number="05">Projects</SectionLabel>
+      <h2>Featured builds.</h2>
+      <div className="project-grid">
+        {featuredProjects.map((project, index) => (
+          <ProjectCard index={index} key={project.title} project={project} />
+        ))}
+      </div>
+      <button
+        className="button button--ghost hover-grow section-action"
+        onClick={() => navigateTo("/projects")}
+        type="button"
+      >
+        View All Projects <ArrowUpRight size={17} />
+      </button>
+    </section>
+  );
+}
+
+function ProjectsPage({ navigateTo }) {
+  return (
+    <section className="section-shell projects-page">
+      <SectionLabel number="01">All Projects</SectionLabel>
+      <div className="page-heading">
+        <h1>
+          Project
+          <span>Archive.</span>
+        </h1>
+        <p>
+          A growing collection of research prototypes, AI systems, experiments,
+          and software projects. I will keep adding to this page as the portfolio grows.
+        </p>
+      </div>
+      <div className="project-grid project-grid--archive">
+        {projects.map((project, index) => (
+          <ProjectCard index={index} key={project.title} project={project} />
+        ))}
+      </div>
+      <div className="project-coming-soon">
+        <p>More projects coming soon.</p>
+        <span>Drop new project details into the data file and they will render here automatically.</span>
+      </div>
+      <button className="button button--ghost hover-grow section-action" onClick={() => navigateTo("/")} type="button">
+        Back Home
+      </button>
     </section>
   );
 }
@@ -347,7 +423,7 @@ function Publications() {
               <h3>{publication.title}</h3>
               <p className="publication-item__venue">{publication.venue}</p>
               <p>{publication.description}</p>
-              <a className="text-link hover-grow" href={publication.doi} target="_blank">
+              <a className="text-link hover-grow" href={publication.doi} rel="noreferrer" target="_blank">
                 DOI <ArrowUpRight size={16} />
               </a>
             </div>
@@ -372,7 +448,7 @@ function Contact() {
           <Mail size={17} />
           Email Me
         </a>
-        <a className="button button--ghost hover-grow" href={profile.linkedin} target="_blank">
+        <a className="button button--ghost hover-grow" href={profile.linkedin} rel="noreferrer" target="_blank">
           LinkedIn <ArrowUpRight size={17} />
         </a>
       </div>
@@ -381,22 +457,52 @@ function Contact() {
 }
 
 export default function App() {
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
   const sectionIds = useMemo(() => navItems.map((item) => item.id), []);
   const activeSection = useActiveSection(sectionIds);
+  const currentPage = currentPath.replace(/\/$/, "") === "/projects" ? "projects" : "home";
+
+  useEffect(() => {
+    const handlePopState = () => setCurrentPath(window.location.pathname);
+    window.addEventListener("popstate", handlePopState);
+
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  const navigateTo = (path) => {
+    const [pathname, hash] = path.split("#");
+    window.history.pushState({}, "", path);
+    setCurrentPath(pathname || "/");
+
+    if (hash) {
+      window.setTimeout(() => {
+        document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
+      }, 0);
+      return;
+    }
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <>
       <CustomCursor />
-      <SidebarNav activeSection={activeSection} />
+      <SidebarNav activeSection={activeSection} currentPage={currentPage} navigateTo={navigateTo} />
       <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Education />
-        <Experience />
-        <Projects />
-        <Publications />
-        <Contact />
+        {currentPage === "projects" ? (
+          <ProjectsPage navigateTo={navigateTo} />
+        ) : (
+          <>
+            <Hero />
+            <About />
+            <Skills />
+            <Education />
+            <Experience />
+            <FeaturedProjects navigateTo={navigateTo} />
+            <Publications />
+            <Contact />
+          </>
+        )}
         <footer>Designed and built by Mrunal Vibhute · 2026</footer>
       </main>
     </>
