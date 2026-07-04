@@ -127,6 +127,7 @@ export const experiences = [
     organization: "Prepify - Evy",
     description:
       "Building AI-powered software for Evy, a platform created by UF students that helps clients run AI-assisted candidate interviews. I work with GenAI tools, LLM prompting, agentic frameworks, evals, and AI coding agents such as Codex to develop product features. Recently, I have been building observability dashboards for testing and monitoring the AI interviewer's performance, including latency, token usage, candidate interactions, question quality, hallucination checks, guardrail compliance, unwanted-behavior flags, alerts, and warnings.",
+    links: [{ label: "Visit Evy", href: "https://evy.io/" }],
   },
   {
     date: "Feb 2026 - Present",
@@ -135,6 +136,12 @@ export const experiences = [
       "SERMOS Lab - Civil and Transportation Engineering, University of Florida",
     description:
       "Supporting research at the intersection of software engineering and machine learning by reading research papers, benchmarking model performance, and assisting PhD students with ongoing research work. Current work focuses on spatio-temporal models and transformer-based approaches.",
+    links: [
+      {
+        label: "Visit SERMOS Lab",
+        href: "https://faculty.eng.ufl.edu/sermos-lab/",
+      },
+    ],
   },
   {
     date: "Jun 2024 - Dec 2024",
@@ -143,6 +150,7 @@ export const experiences = [
     description:
       "Worked on creating and deploying an AI agent for efficient data acquisition from dark marketplaces. A significant hurdle was automating puzzle image-based CAPTCHA solving, where I built evaluation and preprocessing workflows for multimodal models and presented the work at the Notre Dame research symposium.",
     links: [
+      { label: "Visit CRC", href: "https://crc.nd.edu/" },
       {
         label: "Read Medium blog",
         href: "https://medium.com/@mrunalvibhute09/solo-at-20-my-journey-from-india-to-notre-dame-af9c1d75c917",
