@@ -90,7 +90,7 @@ export const education = [
     date: "Aug 2025 - Jun 2027",
     title: "M.S. Artificial Intelligence Systems",
     organization: "University of Florida - Gainesville, FL",
-    detail: "GPA: 3.78/4.0",
+    detail: "GPA: 3.89/4.0",
     description:
       "Coursework: AI Systems, Machine Learning, Applied Deep Learning, Trustworthy ML, Computer Vision & Image Processing, AI Ethics.",
   },
@@ -98,7 +98,7 @@ export const education = [
     date: "Aug 2021 - Jun 2025",
     title: "B.Tech, Computer Engineering",
     organization: "Cummins College of Engineering - Pune, India",
-    detail: "GPA: 3.5/4.0",
+    detail: "GPA: 8.7/10",
     description:
       "Honors in Data Science & ML. Coursework: Software Engineering, Web Dev, Android Dev, Data Structures, Algorithms, OS, Networks & Security, Blockchain, DBMS, DevOps.",
   },
