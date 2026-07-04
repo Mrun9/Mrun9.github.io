@@ -268,6 +268,15 @@ function Timeline({ items }) {
               ))}
             </ul>
           ) : null}
+          {item.links ? (
+            <div className="timeline-links">
+              {item.links.map((link) => (
+                <a className="text-link hover-grow" href={link.href} key={link.href} target="_blank">
+                  {link.label} <ArrowUpRight size={16} />
+                </a>
+              ))}
+            </div>
+          ) : null}
         </article>
       ))}
     </div>

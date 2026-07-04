@@ -102,18 +102,51 @@ export const education = [
     description:
       "Honors in Data Science & ML. Coursework: Software Engineering, Web Dev, Android Dev, Data Structures, Algorithms, OS, Networks & Security, Blockchain, DBMS, DevOps.",
   },
+  {
+    date: "2019 - 2021",
+    title: "Higher Secondary Certificate / High School Diploma",
+    organization:
+      "Maharashtra State Board of Secondary and Higher Secondary Education (MSBSHSE)",
+    detail: "Percentage: 92.50%",
+    description: "Ambrosia Junior College of Science - Nashik, India.",
+  },
+  {
+    date: "2005 - 2019",
+    title: "Secondary School Certificate / Grade 10",
+    organization:
+      "Maharashtra State Board of Secondary and Higher Secondary Education (MSBSHSE)",
+    detail: "Percentage: 91.20%",
+    description: "St. Philomena Convent High School - Nashik, India.",
+  },
 ];
 
 export const experiences = [
   {
+    date: "Apr 2026 - Present",
+    title: "AI Software Engineer",
+    organization: "Prepify - Evy",
+    description:
+      "Building AI-powered software for Evy, a platform created by UF students that helps clients run AI-assisted candidate interviews. I work with GenAI tools, LLM prompting, agentic frameworks, evals, and AI coding agents such as Codex to develop product features. Recently, I have been building observability dashboards for testing and monitoring the AI interviewer's performance, including latency, token usage, candidate interactions, question quality, hallucination checks, guardrail compliance, unwanted-behavior flags, alerts, and warnings.",
+  },
+  {
+    date: "Feb 2026 - Present",
+    title: "Graduate Software and ML Research Student Assistant",
+    organization:
+      "SERMOS Lab - Civil and Transportation Engineering, University of Florida",
+    description:
+      "Supporting research at the intersection of software engineering and machine learning by reading research papers, benchmarking model performance, and assisting PhD students with ongoing research work. Current work focuses on spatio-temporal models and transformer-based approaches.",
+  },
+  {
     date: "Jun 2024 - Dec 2024",
     title: "Research Intern",
     organization: "Center for Research Computing - University of Notre Dame, IN",
-    bullets: [
-      "Built a Dockerized LLM-powered automation tool with Python + Selenium to scrape 200+ pages in 92 minutes, with automated CAPTCHA solving.",
-      "Designed a PyTorch evaluation pipeline across 8 multimodal LLM models, achieving 93.3% accuracy on transformed CAPTCHA variants.",
-      "Applied OpenCV-based preprocessing, improving inference reliability and runtime performance by 40%.",
-      "Presented at the Notre Dame research symposium; co-authored paper accepted in LNAI series.",
+    description:
+      "Worked on creating and deploying an AI agent for efficient data acquisition from dark marketplaces. A significant hurdle was automating puzzle image-based CAPTCHA solving, where I built evaluation and preprocessing workflows for multimodal models and presented the work at the Notre Dame research symposium.",
+    links: [
+      {
+        label: "Read Medium blog",
+        href: "https://medium.com/@mrunalvibhute09/solo-at-20-my-journey-from-india-to-notre-dame-af9c1d75c917",
+      },
     ],
   },
 ];
