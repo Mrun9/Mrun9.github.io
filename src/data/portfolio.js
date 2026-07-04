@@ -126,16 +126,15 @@ export const experiences = [
     title: "AI Software Engineer",
     organization: "Prepify - Evy",
     description:
-      "Building AI-powered software for Evy, a platform created by UF students that helps clients run AI-assisted candidate interviews. I work with GenAI tools, LLM prompting, agentic frameworks, evals, and AI coding agents such as Codex to develop product features. Recently, I have been building observability dashboards for testing and monitoring the AI interviewer's performance, including latency, token usage, candidate interactions, question quality, hallucination checks, guardrail compliance, unwanted-behavior flags, alerts, and warnings.",
+      "Building GenAI product features for Evy, a UF student-founded platform for AI-powered candidate interviews. I work with LLM prompting, agentic workflows, evals, and AI coding agents, recently focusing on observability dashboards that track latency, token usage, interview quality, hallucinations, guardrails, and unwanted behavior.",
     links: [{ label: "Visit Evy", href: "https://evy.io/" }],
   },
   {
     date: "Feb 2026 - Present",
-    title: "Graduate Software and ML Research Student Assistant",
-    organization:
-      "SERMOS Lab - Civil and Transportation Engineering, University of Florida",
+    title: "Graduate Student Assistant",
+    organization: "SERMOS Lab - University of Florida",
     description:
-      "Supporting research at the intersection of software engineering and machine learning by reading research papers, benchmarking model performance, and assisting PhD students with ongoing research work. Current work focuses on spatio-temporal models and transformer-based approaches.",
+      "Supporting a transdisciplinary AI and data science lab that builds smart, equitable, resilient mobility systems. I read research papers, benchmark models, assist PhD research, and currently work with spatio-temporal models and transformer-based methods.",
     links: [
       {
         label: "Visit SERMOS Lab",
@@ -148,7 +147,7 @@ export const experiences = [
     title: "Research Intern",
     organization: "Center for Research Computing - University of Notre Dame, IN",
     description:
-      "Worked on creating and deploying an AI agent for efficient data acquisition from dark marketplaces. A significant hurdle was automating puzzle image-based CAPTCHA solving, where I built evaluation and preprocessing workflows for multimodal models and presented the work at the Notre Dame research symposium.",
+      "Created and deployed an AI agent for data acquisition from dark marketplaces. The hardest piece was automating puzzle image-based CAPTCHA solving, which led me into multimodal model evaluation, image preprocessing, and a research presentation at Notre Dame.",
     links: [
       { label: "Visit CRC", href: "https://crc.nd.edu/" },
       {
