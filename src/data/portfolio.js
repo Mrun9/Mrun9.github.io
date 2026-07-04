@@ -13,7 +13,7 @@ export const profile = {
   location: "Gainesville, FL",
   roleWords: [
     "AI/ML Researcher",
-    "Deep Learning Engineer",
+    "Software Engineer",
     "NLP Enthusiast",
     "Published Author",
   ],
@@ -164,7 +164,7 @@ export const projects = [
     description:
       "A two-stage jailbreak-prompt detection system combining a FAISS semantic cache for sub-millisecond similarity search with a fine-tuned transformer classifier, deployed as a browser extension monitoring live LLM traffic.",
     tags: ["DistilBERT", "FAISS", "Adversarial ML", "Browser Extension", "Python"],
-    github: "https://github.com/Mrun9/Jailbreaking-Detection.git",
+    github: "https://github.com/Mrun9/Jailbreaking-Detection",
     featured: true,
   },
   {
@@ -172,7 +172,7 @@ export const projects = [
     description:
       "CNN-LSTM model in PyTorch on MFCC features for real-time speech anxiety detection. Achieved 96% recall with 1.2-1.5s inference latency on rolling 5-second audio windows.",
     tags: ["PyTorch", "CNN-LSTM", "Whisper", "SHAP", "Docker", "Grafana"],
-    github: "https://github.com/Mrun9/Co-Wingman-AIS-Project.git",
+    github: "https://github.com/Mrun9/Co-Wingman-AIS-Project",
     featured: true,
   },
   {
@@ -192,7 +192,7 @@ export const publications = [
     venue: "ICAART 2025 - Lecture Notes in Artificial Intelligence (LNAI)",
     description:
       "Proposes an autonomous browsing system that uses visual and textual cues to traverse both surface and hidden websites for complex information-gathering tasks.",
-    doi: "https://doi.org/10.5220/0013171600003890",
+    read: "https://www.scitepress.org/Papers/2025/131716/131716.pdf",
   },
   {
     year: "2025",
@@ -200,7 +200,7 @@ export const publications = [
     venue: "ISD4SD 2025 - Springer",
     description:
       "Builds a transparent misinformation classifier that highlights human-readable evidence within articles to explain why content is considered unreliable.",
-    doi: "https://doi.org/10.1007/978303206662646",
+    read: "https://www.researchgate.net/publication/397062758_Interpretable_Fake_News_Detection_Using_Neural_Networks_and_LIME",
   },
   {
     year: "2024",
@@ -208,6 +208,6 @@ export const publications = [
     venue: "ICICT 2024 - Springer",
     description:
       "Analyzes macroeconomic indicators and historical market data with a deep recurrent architecture to forecast future movements in a major currency pair.",
-    doi: "https://doi.org/10.1007/978981973559424",
+    read: "https://www.researchgate.net/profile/Mrunal-Vibhute/publication/382630572_USD_to_INR_Exchange_Rate_Prediction_A_Deep_Learning_Approach_for_Forecasting_Currency_Exchange_Rates_Using_Different_Techniques_of_LSTM/links/66b981018f7e1236bc50821f/USD-to-INR-Exchange-Rate-Prediction-A-Deep-Learning-Approach-for-Forecasting-Currency-Exchange-Rates-Using-Different-Techniques-of-LSTM.pdf",
   },
 ];

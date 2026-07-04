@@ -201,9 +201,7 @@ function Hero() {
         </h1>
         <p className="hero__role">{profile.roleWords[wordIndex]}</p>
         <p className="hero__text">
-          AI/ML researcher building trustworthy, explainable systems. MS in AI
-          Systems at the University of Florida, previously research intern at
-          Notre Dame CRC.
+          I’m drawn to the space between AI research and real-world systems, where models need to work, explain themselves, and behave well under pressure.
         </p>
         <div className="hero__actions">
           <a className="button button--primary hover-grow" href="#featured-projects">
@@ -227,22 +225,24 @@ function About() {
     <section className="section-shell two-column" id="about">
       <div>
         <SectionLabel number="01">About Me</SectionLabel>
-        <h2>Building AI that is trustworthy and real.</h2>
+        <h2>Building AI that works beyond the demo.</h2>
       </div>
       <div className="copy-block">
         <p>
-          I am an AI researcher and engineer who loves building systems at the
-          intersection of deep learning, computer vision, and NLP.
+          I am an AI researcher and engineer who likes the kind of work where
+          research ideas have to survive real data, real users, and real product
+          constraints.
         </p>
         <p>
-          My research at the University of Notre Dame's Center for Research
-          Computing focused on multimodal LLMs for web navigation, including
-          CAPTCHA-solving evaluation tools and papers accepted in LNAI and
-          ICAART 2025.
+          My path has moved across multimodal agents, NLP, computer vision,
+          trustworthy ML, and GenAI software. I am especially interested in
+          systems that can be tested, explained, and improved after they leave
+          the notebook.
         </p>
         <p>
-          I am especially interested in AI that explains itself, from
-          interpretable fake news detectors to adversarial jailbreak defenses.
+          As I finish my graduate program next year, I am looking to bring that
+          research-to-reality mindset into industry, building AI products that
+          are useful, measurable, and responsible.
         </p>
         <div className="stats-grid">
           {stats.map((stat) => (
@@ -423,9 +423,16 @@ function Publications() {
               <h3>{publication.title}</h3>
               <p className="publication-item__venue">{publication.venue}</p>
               <p>{publication.description}</p>
-              <a className="text-link hover-grow" href={publication.doi} rel="noreferrer" target="_blank">
-                DOI <ArrowUpRight size={16} />
-              </a>
+              {publication.read || publication.doi ? (
+                <a
+                  className="text-link hover-grow"
+                  href={publication.read || publication.doi}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  {publication.read ? "Read Paper" : "DOI"} <ArrowUpRight size={16} />
+                </a>
+              ) : null}
             </div>
           </article>
         ))}
