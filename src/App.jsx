@@ -1,6 +1,7 @@
 import { ArrowUpRight, Github, Linkedin, Mail, Menu, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import {
+  education,
   experiences,
   navItems,
   profile,
@@ -248,31 +249,47 @@ function Skills() {
   );
 }
 
+function Timeline({ items }) {
+  return (
+    <div className="timeline">
+      {items.map((item) => (
+        <article className="timeline-item" key={`${item.date}-${item.title}`}>
+          <p className="timeline-item__date">{item.date}</p>
+          <h3>{item.title}</h3>
+          <p className="timeline-item__org">
+            {item.organization}
+            {item.detail ? ` · ${item.detail}` : ""}
+          </p>
+          {item.description ? <p>{item.description}</p> : null}
+          {item.bullets ? (
+            <ul>
+              {item.bullets.map((bullet) => (
+                <li key={bullet}>{bullet}</li>
+              ))}
+            </ul>
+          ) : null}
+        </article>
+      ))}
+    </div>
+  );
+}
+
+function Education() {
+  return (
+    <section className="section-shell" id="education">
+      <SectionLabel number="03">Education</SectionLabel>
+      <h2>Academic foundation.</h2>
+      <Timeline items={education} />
+    </section>
+  );
+}
+
 function Experience() {
   return (
     <section className="section-shell" id="experience">
-      <SectionLabel number="03">Experience & Education</SectionLabel>
-      <h2>The journey so far.</h2>
-      <div className="timeline">
-        {experiences.map((item) => (
-          <article className="timeline-item" key={`${item.date}-${item.title}`}>
-            <p className="timeline-item__date">{item.date}</p>
-            <h3>{item.title}</h3>
-            <p className="timeline-item__org">
-              {item.organization}
-              {item.detail ? ` · ${item.detail}` : ""}
-            </p>
-            {item.description ? <p>{item.description}</p> : null}
-            {item.bullets ? (
-              <ul>
-                {item.bullets.map((bullet) => (
-                  <li key={bullet}>{bullet}</li>
-                ))}
-              </ul>
-            ) : null}
-          </article>
-        ))}
-      </div>
+      <SectionLabel number="04">Experience</SectionLabel>
+      <h2>Research and applied work.</h2>
+      <Timeline items={experiences} />
     </section>
   );
 }
@@ -280,7 +297,7 @@ function Experience() {
 function Projects() {
   return (
     <section className="section-shell" id="projects">
-      <SectionLabel number="04">Projects</SectionLabel>
+      <SectionLabel number="05">Projects</SectionLabel>
       <h2>Things I have built.</h2>
       <div className="project-grid">
         {projects.map((project, index) => (
@@ -311,7 +328,7 @@ function Projects() {
 function Publications() {
   return (
     <section className="section-shell" id="publications">
-      <SectionLabel number="05">Research</SectionLabel>
+      <SectionLabel number="06">Research</SectionLabel>
       <h2>Published work.</h2>
       <div className="publication-list">
         {publications.map((publication) => (
@@ -335,7 +352,7 @@ function Publications() {
 function Contact() {
   return (
     <section className="section-shell contact-section" id="contact">
-      <SectionLabel number="06">Contact</SectionLabel>
+      <SectionLabel number="07">Contact</SectionLabel>
       <h2>Let&apos;s connect.</h2>
       <p>
         Whether it is research collaboration, internships, or a conversation
@@ -366,6 +383,7 @@ export default function App() {
         <Hero />
         <About />
         <Skills />
+        <Education />
         <Experience />
         <Projects />
         <Publications />

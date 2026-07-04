@@ -1,6 +1,7 @@
 export const navItems = [
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
+  { id: "education", label: "Education" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
   { id: "publications", label: "Papers" },
@@ -84,7 +85,7 @@ export const skills = [
   },
 ];
 
-export const experiences = [
+export const education = [
   {
     date: "Aug 2025 - Jun 2027",
     title: "M.S. Artificial Intelligence Systems",
@@ -93,6 +94,17 @@ export const experiences = [
     description:
       "Coursework: AI Systems, Machine Learning, Applied Deep Learning, Trustworthy ML, Computer Vision & Image Processing, AI Ethics.",
   },
+  {
+    date: "Aug 2021 - Jun 2025",
+    title: "B.Tech, Computer Engineering",
+    organization: "Cummins College of Engineering - Pune, India",
+    detail: "GPA: 3.5/4.0",
+    description:
+      "Honors in Data Science & ML. Coursework: Software Engineering, Web Dev, Android Dev, Data Structures, Algorithms, OS, Networks & Security, Blockchain, DBMS, DevOps.",
+  },
+];
+
+export const experiences = [
   {
     date: "Jun 2024 - Dec 2024",
     title: "Research Intern",
@@ -103,14 +115,6 @@ export const experiences = [
       "Applied OpenCV-based preprocessing, improving inference reliability and runtime performance by 40%.",
       "Presented at the Notre Dame research symposium; co-authored paper accepted in LNAI series.",
     ],
-  },
-  {
-    date: "Aug 2021 - Jun 2025",
-    title: "B.Tech, Computer Engineering",
-    organization: "Cummins College of Engineering - Pune, India",
-    detail: "GPA: 3.5/4.0",
-    description:
-      "Honors in Data Science & ML. Coursework: Software Engineering, Web Dev, Android Dev, Data Structures, Algorithms, OS, Networks & Security, Blockchain, DBMS, DevOps.",
   },
 ];
 
