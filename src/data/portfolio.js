@@ -185,6 +185,52 @@ export const projects = [
   },
 ];
 
+export const hackathons = [
+  {
+    title: "AI for Social Good Sprint",
+    achievement: "Winner",
+    timeframe: "Oct 2025 · 36 hours",
+    members: ["Mrunal Vibhute", "Ava Singh", "Noah Patel"],
+    details: [
+      "Built a multilingual knowledge assistant that turned community survey responses into an explainable dashboard for civic organizers.",
+      "Focused on rapid prototyping, a polished demo, and clear storytelling for judges.",
+    ],
+    links: [
+      { label: "Live Demo", href: "https://github.com/Mrun9" },
+      { label: "GitHub", href: "https://github.com/Mrun9" },
+    ],
+    certificates: [{ label: "Winner Certificate", href: "https://github.com/Mrun9" }],
+    media: [
+      {
+        type: "image",
+        src: "/mrunalvibhutePHOTO.jpeg",
+        alt: "Hackathon team presentation",
+        caption: "Demo day setup and live walkthrough.",
+      },
+    ],
+  },
+  {
+    title: "Climate AI Challenge",
+    achievement: "Finalist",
+    timeframe: "Mar 2025 · 24 hours",
+    members: ["Mrunal Vibhute", "Priya Rao"],
+    details: [
+      "Designed an AI workflow that predicts climate-risk hotspots from mixed geospatial and text signals.",
+      "Emphasized practical UX, fast iteration, and a clear narrative around impact.",
+    ],
+    links: [{ label: "Project Brief", href: "https://github.com/Mrun9" }],
+    certificates: [{ label: "Finalist Certificate", href: "https://github.com/Mrun9" }],
+    media: [
+      {
+        type: "image",
+        src: "/mrunalvibhutePHOTO.jpeg",
+        alt: "Hackathon team collaboration",
+        caption: "Prototype walkthrough with the judging panel.",
+      },
+    ],
+  },
+];
+
 export const publications = [
   {
     year: "2025",

@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import {
   education,
   experiences,
+  hackathons,
   navItems,
   profile,
   projects,
@@ -153,6 +154,16 @@ function SidebarNav({ activeSection, currentPage, navigateTo }) {
           >
             <span>{String(navItems.length + 1).padStart(2, "0")}</span>
             All Projects
+          </a>
+          <a
+            className={`side-nav__link hover-grow ${
+              currentPage === "hackathons" ? "side-nav__link--active" : ""
+            }`}
+            href="/hackathons"
+            onClick={(event) => handleNavigation(event, "/hackathons")}
+          >
+            <span>{String(navItems.length + 2).padStart(2, "0")}</span>
+            Hackathons
           </a>
         </nav>
 
@@ -380,6 +391,87 @@ function FeaturedProjects({ navigateTo }) {
   );
 }
 
+function HackathonsPage({ navigateTo }) {
+  return (
+    <section className="section-shell projects-page">
+      <SectionLabel number="01">Hackathons</SectionLabel>
+      <div className="page-heading">
+        <h1>
+          Hackathon
+          <span>Highlights.</span>
+        </h1>
+        <p>
+          A focused record of standout hackathon experiences, including achievements,
+          teammates, outcomes, and links to the work behind each build.
+        </p>
+      </div>
+      <div className="hackathon-list">
+        {hackathons.map((hackathon, index) => (
+          <article className="hackathon-card" key={hackathon.title}>
+            <div className="hackathon-card__header">
+              <div>
+                <p className="project-card__number">{String(index + 1).padStart(2, "0")}</p>
+                <h3>{hackathon.title}</h3>
+                <p className="hackathon-badge">{hackathon.achievement}</p>
+              </div>
+              <div className="hackathon-meta">
+                <div>
+                  <span>Timeframe</span>
+                  <p>{hackathon.timeframe}</p>
+                </div>
+                <div>
+                  <span>Members</span>
+                  <p>{hackathon.members.join(" • ")}</p>
+                </div>
+              </div>
+            </div>
+            <div className="hackathon-card__body">
+              <ul className="hackathon-details-list">
+                {hackathon.details.map((detail) => (
+                  <li key={detail}>{detail}</li>
+                ))}
+              </ul>
+              {hackathon.media && hackathon.media.length > 0 ? (
+                <div className="hackathon-media-grid">
+                  {hackathon.media.map((item) => (
+                    <div className="hackathon-media-item" key={item.src + item.caption}>
+                      {item.type === "image" ? (
+                        <img src={item.src} alt={item.alt || hackathon.title} />
+                      ) : (
+                        <a className="text-link hover-grow" href={item.src} rel="noreferrer" target="_blank">
+                          Open media <ArrowUpRight size={16} />
+                        </a>
+                      )}
+                      {item.caption ? <p>{item.caption}</p> : null}
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+            {(hackathon.links || hackathon.certificates) ? (
+              <div className="hackathon-links">
+                {hackathon.links?.map((link) => (
+                  <a className="text-link hover-grow" href={link.href} key={link.label} rel="noreferrer" target="_blank">
+                    {link.label} <ArrowUpRight size={16} />
+                  </a>
+                ))}
+                {hackathon.certificates?.map((certificate) => (
+                  <a className="text-link hover-grow" href={certificate.href} key={certificate.label} rel="noreferrer" target="_blank">
+                    {certificate.label} <ArrowUpRight size={16} />
+                  </a>
+                ))}
+              </div>
+            ) : null}
+          </article>
+        ))}
+      </div>
+      <button className="button button--ghost hover-grow section-action" onClick={() => navigateTo("/")} type="button">
+        Back Home
+      </button>
+    </section>
+  );
+}
+
 function ProjectsPage({ navigateTo }) {
   return (
     <section className="section-shell projects-page">
@@ -467,7 +559,11 @@ export default function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
   const sectionIds = useMemo(() => navItems.map((item) => item.id), []);
   const activeSection = useActiveSection(sectionIds);
-  const currentPage = currentPath.replace(/\/$/, "") === "/projects" ? "projects" : "home";
+  const currentPage = currentPath.replace(/\/$/, "") === "/projects"
+    ? "projects"
+    : currentPath.replace(/\/$/, "") === "/hackathons"
+      ? "hackathons"
+      : "home";
 
   useEffect(() => {
     const handlePopState = () => setCurrentPath(window.location.pathname);
@@ -498,6 +594,8 @@ export default function App() {
       <main>
         {currentPage === "projects" ? (
           <ProjectsPage navigateTo={navigateTo} />
+        ) : currentPage === "hackathons" ? (
+          <HackathonsPage navigateTo={navigateTo} />
         ) : (
           <>
             <Hero />
