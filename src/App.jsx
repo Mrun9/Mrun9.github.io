@@ -206,7 +206,7 @@ function Hero() {
           I’m drawn to the space between AI research and real-world systems, where models need to work, explain themselves, and behave well under pressure.
         </p>
         <div className="hero__actions">
-          <a className="button button--primary hover-grow" href="#featured-projects">
+          <a className="button button--primary hover-grow" href="/projects">
             View Work
           </a>
           <a className="button button--ghost hover-grow" href={profile.resume} rel="noreferrer" target="_blank">
@@ -364,29 +364,6 @@ function ProjectCard({ project, index }) {
         ) : null}
       </div>
     </article>
-  );
-}
-
-function FeaturedProjects({ navigateTo }) {
-  const featuredProjects = projects.filter((project) => project.featured).slice(0, 4);
-
-  return (
-    <section className="section-shell" id="featured-projects">
-      <SectionLabel number="05">Projects</SectionLabel>
-      <h2>Featured builds.</h2>
-      <div className="project-grid">
-        {featuredProjects.map((project, index) => (
-          <ProjectCard index={index} key={project.title} project={project} />
-        ))}
-      </div>
-      <button
-        className="button button--ghost hover-grow section-action"
-        onClick={() => navigateTo("/projects")}
-        type="button"
-      >
-        View All Projects <ArrowUpRight size={17} />
-      </button>
-    </section>
   );
 }
 
@@ -602,7 +579,6 @@ export default function App() {
             <Skills />
             <Education />
             <Experience />
-            <FeaturedProjects navigateTo={navigateTo} />
             <Publications />
             <Contact />
           </>
