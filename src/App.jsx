@@ -510,6 +510,14 @@ function Publications() {
 }
 
 function Contact() {
+  const [copyLabel, setCopyLabel] = useState("Copy Email");
+
+  const copyEmail = async () => {
+    await navigator.clipboard.writeText(profile.email);
+    setCopyLabel("Email Copied");
+    window.setTimeout(() => setCopyLabel("Copy Email"), 1800);
+  };
+
   return (
     <section className="section-shell contact-section" id="contact">
       <SectionLabel number="07">Contact</SectionLabel>
@@ -518,11 +526,12 @@ function Contact() {
         Whether it is research collaboration, internships, or a conversation
         about explainable AI, my inbox is open.
       </p>
+      <p className="contact-email">{profile.email}</p>
       <div className="contact-actions">
-        <a className="button button--primary hover-grow" href={`mailto:${profile.email}`}>
+        <button className="button button--primary hover-grow" onClick={copyEmail} type="button">
           <Mail size={17} />
-          Email Me
-        </a>
+          {copyLabel}
+        </button>
         <a className="button button--ghost hover-grow" href={profile.linkedin} rel="noreferrer" target="_blank">
           LinkedIn <ArrowUpRight size={17} />
         </a>
