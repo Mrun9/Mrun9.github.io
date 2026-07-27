@@ -377,8 +377,9 @@ function HackathonsPage({ navigateTo }) {
           <span>Highlights.</span>
         </h1>
         <p>
-          A focused record of standout hackathon experiences, including achievements,
-          teammates, outcomes, and links to the work behind each build.
+          A reverse-chronological timeline of hackathons and research competitions,
+          from medical data analysis to dark web enumeration, assistive technology,
+          forecasting, and IoT systems.
         </p>
       </div>
       <div className="hackathon-list">

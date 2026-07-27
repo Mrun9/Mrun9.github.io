@@ -238,13 +238,12 @@ export const projects = [
 
 export const hackathons = [
   {
-    title: "Smart India Hackathon 2023",
-    achievement: "Winner",
-    timeframe: "2023 · 36-hour offline hackathon",
+    title: "DataFest 2026",
+    achievement: "Finalist",
+    timeframe: "2026",
     details: [
-      "Problem statement: Efficient enumeration of non-indexed URLs on the dark web.",
-      "Selected among the top 5 teams from a national pool of participating teams across India.",
-      "Built under the pressure of a 36-hour offline sprint, with emphasis on search strategy, automation, and presenting a working technical approach.",
+      "Worked with multiple medical datasets and used JMP software to explore patterns, extract observations, and present useful insights.",
+      "Focused on translating messy healthcare data into clear analytical findings and a concise presentation narrative.",
     ],
   },
   {
@@ -258,12 +257,13 @@ export const hackathons = [
     ],
   },
   {
-    title: "DataFest 2026",
-    achievement: "Finalist",
-    timeframe: "2026",
+    title: "Smart India Hackathon 2023",
+    achievement: "Winner",
+    timeframe: "2023 · 36-hour offline hackathon",
     details: [
-      "Worked with multiple medical datasets and used JMP software to explore patterns, extract observations, and present useful insights.",
-      "Focused on translating messy healthcare data into clear analytical findings and a concise presentation narrative.",
+      "Problem statement: Efficient enumeration of non-indexed URLs on the dark web.",
+      "Selected among the top 5 teams from a national pool of participating teams across India.",
+      "Built under the pressure of a 36-hour offline sprint, with emphasis on search strategy, automation, and presenting a working technical approach.",
     ],
   },
   {
