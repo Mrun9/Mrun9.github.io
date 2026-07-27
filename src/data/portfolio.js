@@ -3,7 +3,6 @@ export const navItems = [
   { id: "skills", label: "Skills" },
   { id: "education", label: "Education" },
   { id: "experience", label: "Experience" },
-  { id: "featured-projects", label: "Projects" },
   { id: "publications", label: "Papers" },
   { id: "contact", label: "Contact" },
 ];

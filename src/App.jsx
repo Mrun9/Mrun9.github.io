@@ -95,6 +95,12 @@ function CustomCursor() {
 
 function SidebarNav({ activeSection, currentPage, navigateTo }) {
   const [isOpen, setIsOpen] = useState(false);
+  const sidebarItems = [
+    ...navItems.slice(0, 4).map((item) => ({ ...item, type: "section" })),
+    { id: "projects", label: "Projects", type: "page", href: "/projects" },
+    ...navItems.slice(4).map((item) => ({ ...item, type: "section" })),
+    { id: "hackathons", label: "Hackathons", type: "page", href: "/hackathons" },
+  ];
 
   const handleNavigation = (event, href) => {
     setIsOpen(false);
@@ -126,16 +132,21 @@ function SidebarNav({ activeSection, currentPage, navigateTo }) {
         </a>
 
         <nav className="side-nav" aria-label="Main navigation">
-          {navItems.map((item, index) => {
-            const href = currentPage === "home" ? `#${item.id}` : `/#${item.id}`;
+          {sidebarItems.map((item, index) => {
+            const href =
+              item.type === "page"
+                ? item.href
+                : currentPage === "home"
+                  ? `#${item.id}`
+                  : `/#${item.id}`;
+            const isActive =
+              item.type === "page"
+                ? currentPage === item.id
+                : currentPage === "home" && activeSection === item.id;
 
             return (
               <a
-                className={`side-nav__link hover-grow ${
-                  currentPage === "home" && activeSection === item.id
-                    ? "side-nav__link--active"
-                    : ""
-                }`}
+                className={`side-nav__link hover-grow ${isActive ? "side-nav__link--active" : ""}`}
                 href={href}
                 key={item.id}
                 onClick={(event) => handleNavigation(event, href)}
@@ -145,26 +156,6 @@ function SidebarNav({ activeSection, currentPage, navigateTo }) {
               </a>
             );
           })}
-          <a
-            className={`side-nav__link hover-grow ${
-              currentPage === "projects" ? "side-nav__link--active" : ""
-            }`}
-            href="/projects"
-            onClick={(event) => handleNavigation(event, "/projects")}
-          >
-            <span>{String(navItems.length + 1).padStart(2, "0")}</span>
-            All Projects
-          </a>
-          <a
-            className={`side-nav__link hover-grow ${
-              currentPage === "hackathons" ? "side-nav__link--active" : ""
-            }`}
-            href="/hackathons"
-            onClick={(event) => handleNavigation(event, "/hackathons")}
-          >
-            <span>{String(navItems.length + 2).padStart(2, "0")}</span>
-            Hackathons
-          </a>
         </nav>
 
         <div className="sidebar__footer">
