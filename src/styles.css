@@ -523,6 +523,25 @@ h3 {
   border-color: rgba(20, 125, 116, 0.3);
 }
 
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: auto;
+}
+
+.project-links .text-link {
+  margin-top: 0;
+}
+
+.project-card__meta {
+  color: var(--violet);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.76rem;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
 .section-action {
   margin-top: 28px;
 }

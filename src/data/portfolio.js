@@ -183,6 +183,58 @@ export const projects = [
     github: "https://github.com/Mrun9/Speech_Alchemy",
     featured: true,
   },
+  {
+    title: "CruxCapture - Multimodal Summarization Platform",
+    timeframe: "Jan 2024 - Apr 2024",
+    description:
+      "Developed an Android application that summarizes text, audio, and video content using external AI APIs with latency below 10 seconds. Added Firebase authentication, cloud sync, dashboard flows, PDF export, and content sharing through email and messaging integrations.",
+    tags: ["Java", "Android Studio", "Firebase", "REST APIs", "AI APIs"],
+    github: "https://github.com/sayli2003/Summerizer",
+  },
+  {
+    title: "Quiz Application",
+    timeframe: "Jan 2025 - Apr 2025",
+    description:
+      "Built a full-stack quiz platform with authentication, dynamic quizzes, score tracking, role-based access, SQL-backed quiz management, and user performance analytics. Tested and patched SQL injection and XSS vulnerabilities to improve security.",
+    tags: ["Python", "Flask", "SQL", "JavaScript", "Security"],
+    github: "https://github.com/aaditeeiche/quiz-master-isl",
+  },
+  {
+    title: "Pawsitivity - Rescue Center Path Finder",
+    description:
+      "Built a DSA project that uses Dijkstra's algorithm to find the nearest rescue center for an injured dog based on location, turning graph traversal into a practical emergency-routing use case.",
+    tags: ["Data Structures", "Algorithms", "Dijkstra", "Java"],
+    github: "https://github.com/Mrun9/Pawsitivity.git",
+  },
+  {
+    title: "Stock Prediction using CrewAI",
+    description:
+      "Created a multi-agent CrewAI application for equity research. Specialized agents research a company, gather market news, analyze financials, assess risks, and generate a structured investment report with insights and recommendations.",
+    tags: ["Python", "CrewAI", "OpenAI", "Agents", "Financial Analysis"],
+    github: "https://github.com/Mrun9/Stock_Prediction-using-CrewAI",
+  },
+  {
+    title: "Outings - Trip Planning Website",
+    description:
+      "Built a simple trip-planning webpage for browsing outings and organizing travel ideas, with a recorded walkthrough showing the working website experience.",
+    tags: ["HTML", "CSS", "Bootstrap", "JavaScript"],
+    github: "https://github.com/Mrun9/Outings",
+    demo: "https://youtu.be/QwQYDMSwCes",
+  },
+  {
+    title: "Modern Elegance - Event Planning Website",
+    description:
+      "Designed and built an event-planning website for Modern Elegance, focused on presenting services, visual style, and user-friendly browsing for event clients.",
+    tags: ["HTML", "CSS", "JavaScript", "Web Design"],
+    github: "https://github.com/Mrun9/Modern-Elegance-Website.git",
+  },
+  {
+    title: "Sign Language Detection using KNN",
+    description:
+      "Built a computer vision model that recognizes hand signs and displays the predicted letter as text, helping bridge communication gaps for specially abled people. Used K-Nearest Neighbors and achieved an average accuracy of 96% across letters.",
+    tags: ["Machine Learning", "Computer Vision", "KNN", "Python", "OpenCV"],
+    github: "https://github.com/Aditi-Wagh/signrecognition.git",
+  },
 ];
 
 export const hackathons = [

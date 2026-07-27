@@ -353,6 +353,7 @@ function ProjectCard({ project, index }) {
     >
       <p className="project-card__number">{String(index + 1).padStart(2, "0")}</p>
       <h3>{project.title}</h3>
+      {project.timeframe ? <p className="project-card__meta">{project.timeframe}</p> : null}
       <p>{project.description}</p>
       <div className="tag-list">
         {project.tags.map((tag) => (
@@ -361,9 +362,16 @@ function ProjectCard({ project, index }) {
           </span>
         ))}
       </div>
-      <a className="text-link hover-grow" href={project.github} rel="noreferrer" target="_blank">
-        GitHub <ArrowUpRight size={16} />
-      </a>
+      <div className="project-links">
+        <a className="text-link hover-grow" href={project.github} rel="noreferrer" target="_blank">
+          GitHub <ArrowUpRight size={16} />
+        </a>
+        {project.demo ? (
+          <a className="text-link hover-grow" href={project.demo} rel="noreferrer" target="_blank">
+            Demo <ArrowUpRight size={16} />
+          </a>
+        ) : null}
+      </div>
     </article>
   );
 }
