@@ -395,10 +395,12 @@ function HackathonsPage({ navigateTo }) {
                   <span>Timeframe</span>
                   <p>{hackathon.timeframe}</p>
                 </div>
-                <div>
-                  <span>Members</span>
-                  <p>{hackathon.members.join(" • ")}</p>
-                </div>
+                {hackathon.members && hackathon.members.length > 0 ? (
+                  <div>
+                    <span>Members</span>
+                    <p>{hackathon.members.join(" • ")}</p>
+                  </div>
+                ) : null}
               </div>
             </div>
             <div className="hackathon-card__body">

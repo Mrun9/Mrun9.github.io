@@ -238,46 +238,52 @@ export const projects = [
 
 export const hackathons = [
   {
-    title: "AI for Social Good Sprint",
+    title: "Smart India Hackathon 2023",
     achievement: "Winner",
-    timeframe: "Oct 2025 · 36 hours",
-    members: ["Mrunal Vibhute", "Ava Singh", "Noah Patel"],
+    timeframe: "2023 · 36-hour offline hackathon",
     details: [
-      "Built a multilingual knowledge assistant that turned community survey responses into an explainable dashboard for civic organizers.",
-      "Focused on rapid prototyping, a polished demo, and clear storytelling for judges.",
-    ],
-    links: [
-      { label: "Live Demo", href: "https://github.com/Mrun9" },
-      { label: "GitHub", href: "https://github.com/Mrun9" },
-    ],
-    certificates: [{ label: "Winner Certificate", href: "https://github.com/Mrun9" }],
-    media: [
-      {
-        type: "image",
-        src: "/mrunalvibhutePHOTO.jpeg",
-        alt: "Hackathon team presentation",
-        caption: "Demo day setup and live walkthrough.",
-      },
+      "Problem statement: Efficient enumeration of non-indexed URLs on the dark web.",
+      "Selected among the top 5 teams from a national pool of participating teams across India.",
+      "Built under the pressure of a 36-hour offline sprint, with emphasis on search strategy, automation, and presenting a working technical approach.",
     ],
   },
   {
-    title: "Climate AI Challenge",
+    title: "All India Women Hackathon 2024",
     achievement: "Finalist",
-    timeframe: "Mar 2025 · 24 hours",
-    members: ["Mrunal Vibhute", "Priya Rao"],
+    timeframe: "2024",
     details: [
-      "Designed an AI workflow that predicts climate-risk hotspots from mixed geospatial and text signals.",
-      "Emphasized practical UX, fast iteration, and a clear narrative around impact.",
+      "Problem statement: Braille learning application for specially abled children.",
+      "Designed around haptic touch technology as the key differentiator, making learning more tactile, interactive, and accessible.",
+      "Focused on inclusive product thinking, child-friendly interaction flows, and practical assistive technology.",
     ],
-    links: [{ label: "Project Brief", href: "https://github.com/Mrun9" }],
-    certificates: [{ label: "Finalist Certificate", href: "https://github.com/Mrun9" }],
-    media: [
-      {
-        type: "image",
-        src: "/mrunalvibhutePHOTO.jpeg",
-        alt: "Hackathon team collaboration",
-        caption: "Prototype walkthrough with the judging panel.",
-      },
+  },
+  {
+    title: "DataFest 2026",
+    achievement: "Finalist",
+    timeframe: "2026",
+    details: [
+      "Worked with multiple medical datasets and used JMP software to explore patterns, extract observations, and present useful insights.",
+      "Focused on translating messy healthcare data into clear analytical findings and a concise presentation narrative.",
+    ],
+  },
+  {
+    title: "Mined Hackathon 2023",
+    achievement: "Winner",
+    timeframe: "2023",
+    details: [
+      "Problem statement: USD to INR exchange-rate prediction using historical currency values and sentiment analysis.",
+      "Combined time-series signals with sentiment features to reason about currency movement and market behavior.",
+      "The project later shaped my interest in applied forecasting, financial data, and NLP-driven market signals.",
+    ],
+  },
+  {
+    title: "Aavishkar 2022",
+    achievement: "Winner at Zonal and Collegiate Level",
+    timeframe: "2022 · University-level research competition",
+    details: [
+      "Built a smart IoT system to monitor electricity usage and provide insights for more efficient power consumption.",
+      "Used a PIR sensor to detect human presence in a room and an Android app to remotely control power supply through relay switches and circuit boards.",
+      "Focused on practical energy savings, hardware-software integration, and user-facing recommendations.",
     ],
   },
 ];
