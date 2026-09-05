@@ -286,16 +286,6 @@ function SidebarNav({ activeSection, currentPage, isScrolled, navigateTo, scroll
           </div>
         </nav>
 
-        <div className="sidebar__footer">
-          <a className="icon-link hover-grow" href={profile.github} rel="noreferrer" target="_blank">
-            <Github size={18} />
-            GitHub
-          </a>
-          <a className="icon-link hover-grow" href={profile.linkedin} rel="noreferrer" target="_blank">
-            <Linkedin size={18} />
-            LinkedIn
-          </a>
-        </div>
       </aside>
     </>
   );
@@ -956,14 +946,6 @@ function CVPage() {
 }
 
 function Contact() {
-  const [copyLabel, setCopyLabel] = useState("Copy Email");
-
-  const copyEmail = async () => {
-    await navigator.clipboard.writeText(profile.email);
-    setCopyLabel("Email Copied");
-    window.setTimeout(() => setCopyLabel("Copy Email"), 1800);
-  };
-
   return (
     <section className="section-shell contact-section" id="contact">
       <SectionLabel number="06">Contact</SectionLabel>
@@ -973,17 +955,22 @@ function Contact() {
         2027, and I am always open to research collaborations and thoughtful
         conversations about applied, trustworthy AI.
       </p>
-      <a className="contact-email hover-grow" href={`mailto:${profile.email}`}>{profile.email}</a>
-      <div className="contact-actions">
-        <button className="button button--primary hover-grow" onClick={copyEmail} type="button">
-          <Mail size={17} />
-          {copyLabel}
-        </button>
-        <a className="button button--ghost hover-grow" href={profile.linkedin} rel="noreferrer" target="_blank">
-          LinkedIn <ArrowUpRight size={17} />
+      <div className="contact-profile-grid" aria-label="Contact and professional profiles">
+        <a className="contact-profile-card hover-grow" href={`mailto:${profile.email}`}>
+          <Mail size={21} />
+          <span><strong>Email</strong><small>{profile.email}</small></span>
+          <ArrowUpRight size={17} />
         </a>
-      </div>
-      <div className="contact-profile-grid" aria-label="Research and writing profiles">
+        <a className="contact-profile-card hover-grow" href={profile.linkedin} rel="noreferrer" target="_blank">
+          <Linkedin size={21} />
+          <span><strong>LinkedIn</strong><small>Professional profile</small></span>
+          <ArrowUpRight size={17} />
+        </a>
+        <a className="contact-profile-card hover-grow" href={profile.github} rel="noreferrer" target="_blank">
+          <Github size={21} />
+          <span><strong>GitHub</strong><small>Code and projects</small></span>
+          <ArrowUpRight size={17} />
+        </a>
         <a className="contact-profile-card hover-grow" href={profile.orcid} rel="noreferrer" target="_blank">
           <CircleUserRound size={21} />
           <span><strong>ORCID</strong><small>Research identity</small></span>
