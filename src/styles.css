@@ -832,6 +832,60 @@ h3 {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
+.project-domains {
+  display: grid;
+  gap: 64px;
+}
+
+.project-domain {
+  display: grid;
+  gap: 20px;
+}
+
+.project-domain__header {
+  background: #111c2b;
+  border: 1px solid rgba(107, 91, 214, 0.25);
+  border-radius: 12px;
+  box-shadow: 0 18px 50px rgba(24, 28, 42, 0.12);
+  display: grid;
+  grid-template-columns: minmax(220px, 0.72fr) minmax(280px, 1.28fr);
+  min-height: 210px;
+  overflow: hidden;
+}
+
+.project-domain__header img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.project-domain__copy {
+  align-self: center;
+  padding: clamp(24px, 4vw, 42px);
+}
+
+.project-domain__copy h2 {
+  color: #fff;
+  font-size: clamp(1.7rem, 3.4vw, 2.8rem);
+  margin-bottom: 12px;
+}
+
+.project-domain__copy > p:last-child {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 560px;
+}
+
+.project-domain__count {
+  color: #70e0d6;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
 .hackathon-list {
   display: grid;
   gap: 20px;
@@ -1175,6 +1229,19 @@ h3 {
   .project-grid,
   .stats-grid {
     grid-template-columns: 1fr;
+  }
+
+  .project-domains {
+    gap: 46px;
+  }
+
+  .project-domain__header {
+    grid-template-columns: 1fr;
+  }
+
+  .project-domain__header img {
+    aspect-ratio: 16 / 8;
+    max-height: 240px;
   }
 
   .publication-item {

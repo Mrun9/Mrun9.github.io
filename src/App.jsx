@@ -7,6 +7,7 @@ import {
   navItems,
   posters,
   profile,
+  projectDomains,
   projects,
   publications,
   skills,
@@ -630,14 +631,30 @@ function ProjectsPage({ navigateTo }) {
           and software projects. I will keep adding to this page as the portfolio grows.
         </p>
       </div>
-      <div className="project-grid project-grid--archive">
-        {projects.map((project, index) => (
-          <ProjectCard index={index} key={project.title} project={project} />
-        ))}
-      </div>
-      <div className="project-coming-soon">
-        <p>More projects coming soon.</p>
-        <span>Drop new project details into the data file and they will render here automatically.</span>
+      <div className="project-domains">
+        {projectDomains.map((domain) => {
+          const domainProjects = projects.filter((project) => project.domain === domain.id);
+
+          return (
+            <section className="project-domain" key={domain.id} aria-labelledby={`${domain.id}-title`}>
+              <div className="project-domain__header">
+                <img src={domain.image} alt={domain.imageAlt} loading="lazy" />
+                <div className="project-domain__copy">
+                  <p className="project-domain__count">
+                    {String(domainProjects.length).padStart(2, "0")} projects
+                  </p>
+                  <h2 id={`${domain.id}-title`}>{domain.title}</h2>
+                  <p>{domain.description}</p>
+                </div>
+              </div>
+              <div className="project-grid project-grid--archive">
+                {domainProjects.map((project) => (
+                  <ProjectCard index={projects.indexOf(project)} key={project.title} project={project} />
+                ))}
+              </div>
+            </section>
+          );
+        })}
       </div>
       <button className="button button--ghost hover-grow section-action" onClick={() => navigateTo("/")} type="button">
         Back Home

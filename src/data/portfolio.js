@@ -167,9 +167,34 @@ export const experiences = [
   },
 ];
 
+export const projectDomains = [
+  {
+    id: "ai-systems",
+    title: "AI Systems & Agents",
+    description: "Language intelligence, multimodal systems, AI safety, and agent collaboration.",
+    image: "/project-domains/ai-systems.jpg",
+    imageAlt: "Abstract neural network and security shield representing intelligent AI systems",
+  },
+  {
+    id: "perception-ml",
+    title: "Perception & Predictive ML",
+    description: "Models that interpret speech, vision, sentiment, and real-world signals.",
+    image: "/project-domains/perception-ml.jpg",
+    imageAlt: "Abstract hand gesture, speech waveform, and analytical contours representing perception models",
+  },
+  {
+    id: "software-web",
+    title: "Software Products & Web",
+    description: "User-facing applications that turn technical ideas into usable experiences.",
+    image: "/project-domains/software-web.jpg",
+    imageAlt: "Layered web and mobile interfaces representing software products",
+  },
+];
+
 export const projects = [
   {
     title: "Adversarial Jailbreak Detection System for LLMs",
+    domain: "ai-systems",
     bullets: [
           "Enabled sub-millisecond prompt matching by using a FAISS semantic cache.",
           "Added a second detection stage by pairing cached matches with a fine-tuned transformer classifier.",
@@ -182,6 +207,7 @@ export const projects = [
   },
   {
     title: "Co-Wingman - Real-Time AI Speech Anxiety Detection",
+    domain: "perception-ml",
     bullets: [
           "Detected speech anxiety with 96% recall using a CNN-LSTM trained on MFCC features.",
           "Delivered predictions in 1.2–1.5 seconds through a PyTorch inference pipeline.",
@@ -194,6 +220,7 @@ export const projects = [
   },
   {
     title: "Currency Exchange Rate Prediction via Sentiment Analysis",
+    domain: "perception-ml",
     bullets: [
           "Predicted USD-to-INR rates at 90% testing accuracy using Decision Tree Regressors.",
           "Grounded exchange-rate forecasts in 10+ years of historical data.",
@@ -205,6 +232,7 @@ export const projects = [
   },
   {
     title: "CruxCapture - Multimodal Summarization Platform",
+    domain: "ai-systems",
     timeframe: "Jan 2024 - Apr 2024",
     bullets: [
           "Summarized text, audio, and video in under 10 seconds using external AI APIs.",
@@ -216,6 +244,7 @@ export const projects = [
   },
   {
     title: "Quiz Application",
+    domain: "software-web",
     timeframe: "Jan 2025 - Apr 2025",
     bullets: [
           "Enabled role-based quiz access through a full-stack platform with authentication.",
@@ -227,6 +256,7 @@ export const projects = [
   },
   {
     title: "Pawsitivity - Rescue Center Path Finder",
+    domain: "perception-ml",
     bullets: [
           "Identified the nearest rescue center for an injured dog using Dijkstra’s algorithm.",
           "Enabled location-based rescue routing by modeling the search as a graph problem.",
@@ -237,6 +267,7 @@ export const projects = [
   },
   {
     title: "Stock Prediction using CrewAI",
+    domain: "ai-systems",
     bullets: [
           "Automated company research by coordinating specialized CrewAI agents.",
           "Built investment context by gathering market news and analyzing financials and risks.",
@@ -247,6 +278,7 @@ export const projects = [
   },
   {
     title: "Outings - Trip Planning Website",
+    domain: "software-web",
     bullets: [
           "Enabled outing discovery through a dedicated trip-planning webpage.",
           "Supported travel-idea organization with an HTML, CSS, Bootstrap, and JavaScript interface.",
@@ -258,6 +290,7 @@ export const projects = [
   },
   {
     title: "Modern Elegance - Event Planning Website",
+    domain: "software-web",
     bullets: [
           "Presented Modern Elegance’s event services through a dedicated planning website.",
           "Supported client browsing through an interface built with HTML, CSS, and JavaScript.",
@@ -268,6 +301,7 @@ export const projects = [
   },
   {
     title: "Sign Language Detection using KNN",
+    domain: "perception-ml",
     bullets: [
           "Recognized hand signs at 96% average accuracy across letters using KNN.",
           "Made predicted signs readable by displaying recognized letters as text.",
