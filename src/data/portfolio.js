@@ -16,9 +16,12 @@ export const profile = {
     "NLP Enthusiast",
     "Published Author",
   ],
-  email: "mrunalvibhute09@gmail.com",
+  email: "mvibhute@ufl.edu",
   github: "https://github.com/Mrun9/",
   linkedin: "https://linkedin.com/in/mrunal-vibhute-b6b392235/",
+  orcid: "https://orcid.org/0009-0009-5843-7559",
+  scholar: "https://scholar.google.com/citations?hl=en",
+  medium: "https://medium.com/@mrunalvibhute09",
   resume: "/Mrunal Vibhute ___ Resume.pdf",
   photo: "/mrunalvibhutePHOTO.jpeg",
 };

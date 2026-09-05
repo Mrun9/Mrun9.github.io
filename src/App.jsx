@@ -1,4 +1,4 @@
-import { ArrowUpRight, Github, Linkedin, Mail, Menu, X } from "lucide-react";
+import { ArrowUpRight, CircleUserRound, Github, GraduationCap, Linkedin, Mail, Menu, PenLine, X } from "lucide-react";
 import { createContext, useContext, useEffect, useId, useMemo, useRef, useState } from "react";
 import {
   education,
@@ -969,10 +969,11 @@ function Contact() {
       <SectionLabel number="06">Contact</SectionLabel>
       <h2>Let&apos;s connect.</h2>
       <p>
-        Whether it is research collaboration, internships, or a conversation
-        about explainable AI, my inbox is open.
+        I am seeking full-time AI/ML and software engineering opportunities for
+        2027, and I am always open to research collaborations and thoughtful
+        conversations about applied, trustworthy AI.
       </p>
-      <p className="contact-email">{profile.email}</p>
+      <a className="contact-email hover-grow" href={`mailto:${profile.email}`}>{profile.email}</a>
       <div className="contact-actions">
         <button className="button button--primary hover-grow" onClick={copyEmail} type="button">
           <Mail size={17} />
@@ -980,6 +981,23 @@ function Contact() {
         </button>
         <a className="button button--ghost hover-grow" href={profile.linkedin} rel="noreferrer" target="_blank">
           LinkedIn <ArrowUpRight size={17} />
+        </a>
+      </div>
+      <div className="contact-profile-grid" aria-label="Research and writing profiles">
+        <a className="contact-profile-card hover-grow" href={profile.orcid} rel="noreferrer" target="_blank">
+          <CircleUserRound size={21} />
+          <span><strong>ORCID</strong><small>Research identity</small></span>
+          <ArrowUpRight size={17} />
+        </a>
+        <a className="contact-profile-card hover-grow" href={profile.scholar} rel="noreferrer" target="_blank">
+          <GraduationCap size={21} />
+          <span><strong>Google Scholar</strong><small>Publications and citations</small></span>
+          <ArrowUpRight size={17} />
+        </a>
+        <a className="contact-profile-card hover-grow" href={profile.medium} rel="noreferrer" target="_blank">
+          <PenLine size={21} />
+          <span><strong>Medium</strong><small>Writing and reflections</small></span>
+          <ArrowUpRight size={17} />
         </a>
       </div>
     </section>
