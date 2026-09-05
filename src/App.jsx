@@ -1,5 +1,5 @@
 import { ArrowUpRight, Github, Linkedin, Mail, Menu, X } from "lucide-react";
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useId, useMemo, useRef, useState } from "react";
 import {
   education,
   experiences,
@@ -453,15 +453,35 @@ function Experience() {
 }
 
 function ProjectCard({ project, index }) {
+  const dialogRef = useRef(null);
+  const titleId = useId();
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = previousOverflow; };
+  }, [isOpen]);
+
+  const openDetails = () => {
+    dialogRef.current.showModal();
+    setIsOpen(true);
+  };
+
   return (
     <article
       className={`project-card ${project.featured ? "project-card--featured" : ""}`}
       key={project.title}
     >
       <p className="project-card__number">{String(index + 1).padStart(2, "0")}</p>
-      <h3>{project.title}</h3>
+      <h3>
+        <button className="project-card__trigger" type="button" onClick={openDetails} aria-haspopup="dialog">
+          {project.title}
+        </button>
+      </h3>
       {project.timeframe ? <p className="project-card__meta">{project.timeframe}</p> : null}
-      <p>{project.description}</p>
+      <span className="project-card__hint">View project details <ArrowUpRight size={16} /></span>
       <div className="tag-list">
         {project.tags.map((tag) => (
           <span className="tag" key={tag}>
@@ -479,6 +499,29 @@ function ProjectCard({ project, index }) {
           </a>
         ) : null}
       </div>
+      <dialog
+        className="project-dialog"
+        ref={dialogRef}
+        aria-labelledby={titleId}
+        onClose={() => setIsOpen(false)}
+        onClick={(event) => {
+          if (event.target !== event.currentTarget) return;
+          const bounds = event.currentTarget.getBoundingClientRect();
+          if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) {
+            dialogRef.current.close();
+          }
+        }}
+      >
+        <button className="project-dialog__close" type="button" onClick={() => dialogRef.current.close()} aria-label="Close project details" autoFocus>
+          <X size={22} />
+        </button>
+        <p className="eyebrow">Project details</p>
+        <h3 id={titleId}>{project.title}</h3>
+        {project.timeframe ? <p className="project-card__meta">{project.timeframe}</p> : null}
+        <ul className="project-dialog__bullets">
+          {project.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
+        </ul>
+      </dialog>
     </article>
   );
 }

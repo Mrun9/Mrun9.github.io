@@ -170,8 +170,11 @@ export const experiences = [
 export const projects = [
   {
     title: "Adversarial Jailbreak Detection System for LLMs",
-    description:
-      "A two-stage jailbreak-prompt detection system combining a FAISS semantic cache for sub-millisecond similarity search with a fine-tuned transformer classifier, deployed as a browser extension monitoring live LLM traffic.",
+    bullets: [
+          "Enabled sub-millisecond prompt matching by using a FAISS semantic cache.",
+          "Added a second detection stage by pairing cached matches with a fine-tuned transformer classifier.",
+          "Brought jailbreak detection to live LLM traffic through a browser extension."
+    ],
     tags: ["DistilBERT", "FAISS", "Adversarial ML", "Browser Extension", "Python"],
     github: "https://github.com/Mrun9/Jailbreaking-Detection",
     demo: "https://youtu.be/2m1bjQLTjmw",
@@ -179,8 +182,11 @@ export const projects = [
   },
   {
     title: "Co-Wingman - Real-Time AI Speech Anxiety Detection",
-    description:
-      "CNN-LSTM model in PyTorch on MFCC features for real-time speech anxiety detection. Achieved 96% recall with 1.2-1.5s inference latency on rolling 5-second audio windows.",
+    bullets: [
+          "Detected speech anxiety with 96% recall using a CNN-LSTM trained on MFCC features.",
+          "Delivered predictions in 1.2–1.5 seconds through a PyTorch inference pipeline.",
+          "Supported ongoing speech monitoring by analyzing rolling 5-second audio windows."
+    ],
     tags: ["PyTorch", "CNN-LSTM", "Whisper", "SHAP", "Docker", "Grafana"],
     github: "https://github.com/Mrun9/Co-Wingman-AIS-Project",
     demo: "https://youtu.be/-m-4j05gbFc",
@@ -188,8 +194,11 @@ export const projects = [
   },
   {
     title: "Currency Exchange Rate Prediction via Sentiment Analysis",
-    description:
-      "Leveraged 10+ years of historical data with Decision Tree Regressors to predict USD-to-INR rates at 90% testing accuracy, plus an NLP pipeline analyzing 2,000+ tweets.",
+    bullets: [
+          "Predicted USD-to-INR rates at 90% testing accuracy using Decision Tree Regressors.",
+          "Grounded exchange-rate forecasts in 10+ years of historical data.",
+          "Added sentiment analysis by processing 2,000+ tweets through an NLP pipeline."
+    ],
     tags: ["Scikit-learn", "NLTK", "Sentiment Analysis", "Streamlit"],
     github: "https://github.com/Mrun9/Speech_Alchemy",
     featured: true,
@@ -197,52 +206,73 @@ export const projects = [
   {
     title: "CruxCapture - Multimodal Summarization Platform",
     timeframe: "Jan 2024 - Apr 2024",
-    description:
-      "Developed an Android application that summarizes text, audio, and video content using external AI APIs with latency below 10 seconds. Added Firebase authentication, cloud sync, dashboard flows, PDF export, and content sharing through email and messaging integrations.",
+    bullets: [
+          "Summarized text, audio, and video in under 10 seconds using external AI APIs.",
+          "Enabled authenticated access and cloud sync through Firebase integration.",
+          "Made summaries portable through PDF export and email and messaging sharing."
+    ],
     tags: ["Java", "Android Studio", "Firebase", "REST APIs", "AI APIs"],
     github: "https://github.com/sayli2003/Summerizer",
   },
   {
     title: "Quiz Application",
     timeframe: "Jan 2025 - Apr 2025",
-    description:
-      "Built a full-stack quiz platform with authentication, dynamic quizzes, score tracking, role-based access, SQL-backed quiz management, and user performance analytics. Tested and patched SQL injection and XSS vulnerabilities to improve security.",
+    bullets: [
+          "Enabled role-based quiz access through a full-stack platform with authentication.",
+          "Tracked scores and user performance through SQL-backed quiz management and analytics.",
+          "Addressed SQL injection and XSS vulnerabilities through security testing and patches."
+    ],
     tags: ["Python", "Flask", "SQL", "JavaScript", "Security"],
     github: "https://github.com/aaditeeiche/quiz-master-isl",
   },
   {
     title: "Pawsitivity - Rescue Center Path Finder",
-    description:
-      "Built a DSA project that uses Dijkstra's algorithm to find the nearest rescue center for an injured dog based on location, turning graph traversal into a practical emergency-routing use case.",
+    bullets: [
+          "Identified the nearest rescue center for an injured dog using Dijkstra’s algorithm.",
+          "Enabled location-based rescue routing by modeling the search as a graph problem.",
+          "Applied data structures to emergency routing through a Java project."
+    ],
     tags: ["Data Structures", "Algorithms", "Dijkstra", "Java"],
     github: "https://github.com/Mrun9/Pawsitivity.git",
   },
   {
     title: "Stock Prediction using CrewAI",
-    description:
-      "Created a multi-agent CrewAI application for equity research. Specialized agents research a company, gather market news, analyze financials, assess risks, and generate a structured investment report with insights and recommendations.",
+    bullets: [
+          "Automated company research by coordinating specialized CrewAI agents.",
+          "Built investment context by gathering market news and analyzing financials and risks.",
+          "Delivered insights and recommendations through a structured investment report."
+    ],
     tags: ["Python", "CrewAI", "OpenAI", "Agents", "Financial Analysis"],
     github: "https://github.com/Mrun9/Stock_Prediction-using-CrewAI",
   },
   {
     title: "Outings - Trip Planning Website",
-    description:
-      "Built a simple trip-planning webpage for browsing outings and organizing travel ideas, with a recorded walkthrough showing the working website experience.",
+    bullets: [
+          "Enabled outing discovery through a dedicated trip-planning webpage.",
+          "Supported travel-idea organization with an HTML, CSS, Bootstrap, and JavaScript interface.",
+          "Demonstrated the working trip-planning experience through a recorded walkthrough."
+    ],
     tags: ["HTML", "CSS", "Bootstrap", "JavaScript"],
     github: "https://github.com/Mrun9/Outings",
     demo: "https://youtu.be/QwQYDMSwCes",
   },
   {
     title: "Modern Elegance - Event Planning Website",
-    description:
-      "Designed and built an event-planning website for Modern Elegance, focused on presenting services, visual style, and user-friendly browsing for event clients.",
+    bullets: [
+          "Presented Modern Elegance’s event services through a dedicated planning website.",
+          "Supported client browsing through an interface built with HTML, CSS, and JavaScript.",
+          "Communicated the event brand’s visual style through the website design."
+    ],
     tags: ["HTML", "CSS", "JavaScript", "Web Design"],
     github: "https://github.com/Mrun9/Modern-Elegance-Website.git",
   },
   {
     title: "Sign Language Detection using KNN",
-    description:
-      "Built a computer vision model that recognizes hand signs and displays the predicted letter as text, helping bridge communication gaps for specially abled people. Used K-Nearest Neighbors and achieved an average accuracy of 96% across letters.",
+    bullets: [
+          "Recognized hand signs at 96% average accuracy across letters using KNN.",
+          "Made predicted signs readable by displaying recognized letters as text.",
+          "Supported accessible communication through a Python and OpenCV vision model."
+    ],
     tags: ["Machine Learning", "Computer Vision", "KNN", "Python", "OpenCV"],
     github: "https://github.com/Aditi-Wagh/signrecognition.git",
   },
