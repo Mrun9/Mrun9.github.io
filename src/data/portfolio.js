@@ -164,6 +164,7 @@ export const projects = [
       "A two-stage jailbreak-prompt detection system combining a FAISS semantic cache for sub-millisecond similarity search with a fine-tuned transformer classifier, deployed as a browser extension monitoring live LLM traffic.",
     tags: ["DistilBERT", "FAISS", "Adversarial ML", "Browser Extension", "Python"],
     github: "https://github.com/Mrun9/Jailbreaking-Detection",
+    demo: "https://youtu.be/2m1bjQLTjmw",
     featured: true,
   },
   {
