@@ -183,7 +183,7 @@ export const projects = [
       "CNN-LSTM model in PyTorch on MFCC features for real-time speech anxiety detection. Achieved 96% recall with 1.2-1.5s inference latency on rolling 5-second audio windows.",
     tags: ["PyTorch", "CNN-LSTM", "Whisper", "SHAP", "Docker", "Grafana"],
     github: "https://github.com/Mrun9/Co-Wingman-AIS-Project",
-    demo: "https://drive.google.com/drive/folders/1hjqvbGadjIXzxZvnQsuEP7qdYifNApMY",
+    demo: "https://youtu.be/-m-4j05gbFc",
     featured: true,
   },
   {
