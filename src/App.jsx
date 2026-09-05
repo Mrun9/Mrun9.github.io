@@ -13,30 +13,54 @@ import {
   stats,
 } from "./data/portfolio";
 
-function useActiveSection(sectionIds) {
-  const [activeSection, setActiveSection] = useState(sectionIds[0]);
+function useScrollNavigation(sectionIds) {
+  const [scrollState, setScrollState] = useState({
+    activeSection: sectionIds[0],
+    progress: 0,
+    isScrolled: false,
+  });
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: "-35% 0px -55% 0px" }
-    );
+    let frameId;
 
-    sectionIds.forEach((id) => {
-      const section = document.getElementById(id);
-      if (section) observer.observe(section);
-    });
+    const updateNavigation = () => {
+      const sections = sectionIds
+        .map((id) => document.getElementById(id))
+        .filter(Boolean);
+      const marker = window.scrollY + window.innerHeight * 0.38;
+      const activeSection = sections.reduce(
+        (current, section) => (section.offsetTop <= marker ? section.id : current),
+        sections[0]?.id || sectionIds[0]
+      );
+      const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollableHeight > 0
+        ? Math.min(100, Math.max(0, (window.scrollY / scrollableHeight) * 100))
+        : 0;
 
-    return () => observer.disconnect();
+      setScrollState({
+        activeSection,
+        progress,
+        isScrolled: window.scrollY > 24,
+      });
+    };
+
+    const handleScroll = () => {
+      cancelAnimationFrame(frameId);
+      frameId = requestAnimationFrame(updateNavigation);
+    };
+
+    updateNavigation();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+
+    return () => {
+      cancelAnimationFrame(frameId);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, [sectionIds]);
 
-  return activeSection;
+  return scrollState;
 }
 
 function CustomCursor() {
@@ -94,14 +118,16 @@ function CustomCursor() {
   );
 }
 
-function SidebarNav({ activeSection, currentPage, navigateTo }) {
+function SidebarNav({ activeSection, currentPage, isScrolled, navigateTo, scrollProgress }) {
   const [isOpen, setIsOpen] = useState(false);
-  const sidebarItems = [
-    ...navItems.slice(0, 4).map((item) => ({ ...item, type: "section" })),
+  const pageSections = [
+    { id: "hero", label: "Home", type: "section" },
+    ...navItems.map((item) => ({ ...item, type: "section" })),
+  ];
+  const archivePages = [
     { id: "projects", label: "Projects", type: "page", href: "/projects" },
-    ...navItems.slice(4).map((item) => ({ ...item, type: "section" })),
-    { id: "posters", label: "Posters", type: "page", href: "/posters" },
     { id: "hackathons", label: "Hackathons", type: "page", href: "/hackathons" },
+    { id: "posters", label: "Research Posters", type: "page", href: "/posters" },
   ];
 
   const handleNavigation = (event, href) => {
@@ -123,7 +149,11 @@ function SidebarNav({ activeSection, currentPage, navigateTo }) {
         {isOpen ? <X size={22} /> : <Menu size={22} />}
       </button>
 
-      <aside className={`sidebar ${isOpen ? "sidebar--open" : ""}`}>
+      <aside
+        className={`sidebar ${isOpen ? "sidebar--open" : ""} ${isScrolled ? "sidebar--scrolled" : ""}`}
+        style={{ "--scroll-progress": `${scrollProgress}%` }}
+      >
+        <div className="sidebar__progress" aria-hidden="true" />
         <a
           className="brand hover-grow"
           href="/"
@@ -134,17 +164,12 @@ function SidebarNav({ activeSection, currentPage, navigateTo }) {
         </a>
 
         <nav className="side-nav" aria-label="Main navigation">
-          {sidebarItems.map((item, index) => {
+          <div className="side-nav__group">
+            <p className="side-nav__heading">On this page</p>
+            {pageSections.map((item, index) => {
             const href =
-              item.type === "page"
-                ? item.href
-                : currentPage === "home"
-                  ? `#${item.id}`
-                  : `/#${item.id}`;
-            const isActive =
-              item.type === "page"
-                ? currentPage === item.id
-                : currentPage === "home" && activeSection === item.id;
+              currentPage === "home" ? `#${item.id}` : `/#${item.id}`;
+            const isActive = currentPage === "home" && activeSection === item.id;
 
             return (
               <a
@@ -152,12 +177,35 @@ function SidebarNav({ activeSection, currentPage, navigateTo }) {
                 href={href}
                 key={item.id}
                 onClick={(event) => handleNavigation(event, href)}
+                aria-current={isActive ? "location" : undefined}
               >
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 {item.label}
               </a>
             );
-          })}
+            })}
+          </div>
+
+          <div className="side-nav__group side-nav__group--archive">
+            <p className="side-nav__heading">Explore archives</p>
+            {archivePages.map((item, index) => {
+              const isActive = currentPage === item.id;
+
+              return (
+                <a
+                  className={`side-nav__link side-nav__link--page hover-grow ${isActive ? "side-nav__link--active" : ""}`}
+                  href={item.href}
+                  key={item.id}
+                  onClick={(event) => handleNavigation(event, item.href)}
+                  aria-current={isActive ? "page" : undefined}
+                >
+                  <span>{String.fromCharCode(65 + index)}</span>
+                  {item.label}
+                  <ArrowUpRight className="side-nav__page-icon" size={14} />
+                </a>
+              );
+            })}
+          </div>
         </nav>
 
         <div className="sidebar__footer">
@@ -605,8 +653,8 @@ function Contact() {
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
-  const sectionIds = useMemo(() => navItems.map((item) => item.id), []);
-  const activeSection = useActiveSection(sectionIds);
+  const sectionIds = useMemo(() => ["hero", ...navItems.map((item) => item.id)], []);
+  const { activeSection, progress, isScrolled } = useScrollNavigation(sectionIds);
   const currentPage = currentPath.replace(/\/$/, "") === "/projects"
     ? "projects"
     : currentPath.replace(/\/$/, "") === "/hackathons"
@@ -640,7 +688,13 @@ export default function App() {
   return (
     <>
       <CustomCursor />
-      <SidebarNav activeSection={activeSection} currentPage={currentPage} navigateTo={navigateTo} />
+      <SidebarNav
+        activeSection={activeSection}
+        currentPage={currentPage}
+        isScrolled={isScrolled}
+        navigateTo={navigateTo}
+        scrollProgress={progress}
+      />
       <main>
         {currentPage === "projects" ? (
           <ProjectsPage navigateTo={navigateTo} />
