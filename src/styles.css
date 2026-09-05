@@ -390,6 +390,37 @@ h3 {
   margin-top: 32px;
 }
 
+.hero__profile-links {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 18px;
+}
+
+.hero__profile-links a {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  display: inline-flex;
+  height: 36px;
+  justify-content: center;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease,
+    transform 180ms ease;
+  width: 36px;
+}
+
+.hero__profile-links a:hover,
+.hero__profile-links a:focus-visible {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent-strong);
+  outline: none;
+  transform: translateY(-2px);
+}
+
 .button {
   align-items: center;
   border-radius: 999px;

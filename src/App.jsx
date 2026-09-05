@@ -14,8 +14,8 @@ import {
 } from "./data/portfolio";
 
 const homeSections = [
-  { id: "selected-work", label: "Selected Work" },
   { id: "about", label: "About" },
+  { id: "selected-work", label: "Selected Work" },
   { id: "experience-highlights", label: "Experience" },
   { id: "research-highlights", label: "Research" },
   { id: "skills-snapshot", label: "Skills" },
@@ -335,6 +335,26 @@ function Hero() {
             Full CV <ArrowUpRight size={17} />
           </a>
         </div>
+        <div className="hero__profile-links" aria-label="Professional profiles">
+          <a href={`mailto:${profile.email}`} aria-label="Email Mrunal" title="Email">
+            <Mail size={18} />
+          </a>
+          <a href={profile.linkedin} rel="noreferrer" target="_blank" aria-label="Mrunal on LinkedIn" title="LinkedIn">
+            <Linkedin size={18} />
+          </a>
+          <a href={profile.github} rel="noreferrer" target="_blank" aria-label="Mrunal on GitHub" title="GitHub">
+            <Github size={18} />
+          </a>
+          <a href={profile.orcid} rel="noreferrer" target="_blank" aria-label="Mrunal on ORCID" title="ORCID">
+            <CircleUserRound size={18} />
+          </a>
+          <a href={profile.scholar} rel="noreferrer" target="_blank" aria-label="Mrunal on Google Scholar" title="Google Scholar">
+            <GraduationCap size={18} />
+          </a>
+          <a href={profile.medium} rel="noreferrer" target="_blank" aria-label="Mrunal on Medium" title="Medium">
+            <PenLine size={18} />
+          </a>
+        </div>
       </div>
 
       <figure className="portrait-panel">
@@ -355,7 +375,7 @@ function About() {
   return (
     <section className="section-shell two-column" id="about">
       <div>
-        <SectionLabel number="02">About Me</SectionLabel>
+        <SectionLabel number="01">About Me</SectionLabel>
         <h2>Building AI that works beyond the demo.</h2>
       </div>
       <div className="copy-block">
@@ -585,7 +605,7 @@ function SelectedWork() {
 
   return (
     <section className="section-shell" id="selected-work">
-      <SectionLabel number="01">Selected Work</SectionLabel>
+      <SectionLabel number="02">Selected Work</SectionLabel>
       <div className="selected-work__heading">
         <h2>A few signals of how I think and build.</h2>
         <p>
@@ -1062,8 +1082,8 @@ export default function App() {
         ) : (
           <>
             <Hero />
-            <SelectedWork />
             <About />
+            <SelectedWork />
             <ExperienceHighlights />
             <ResearchHighlights />
             <SkillsSnapshot />
