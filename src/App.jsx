@@ -5,6 +5,7 @@ import {
   experiences,
   hackathons,
   navItems,
+  posters,
   profile,
   projects,
   publications,
@@ -99,6 +100,7 @@ function SidebarNav({ activeSection, currentPage, navigateTo }) {
     ...navItems.slice(0, 4).map((item) => ({ ...item, type: "section" })),
     { id: "projects", label: "Projects", type: "page", href: "/projects" },
     ...navItems.slice(4).map((item) => ({ ...item, type: "section" })),
+    { id: "posters", label: "Posters", type: "page", href: "/posters" },
     { id: "hackathons", label: "Hackathons", type: "page", href: "/hackathons" },
   ];
 
@@ -481,6 +483,64 @@ function ProjectsPage({ navigateTo }) {
   );
 }
 
+function PosterImage({ image }) {
+  const [isMissing, setIsMissing] = useState(false);
+
+  if (isMissing) {
+    return (
+      <div className="poster-gallery__placeholder">
+        <span>Image coming soon</span>
+        <small>{image.src}</small>
+      </div>
+    );
+  }
+
+  return <img src={image.src} alt={image.alt} onError={() => setIsMissing(true)} />;
+}
+
+function PostersPage({ navigateTo }) {
+  return (
+    <section className="section-shell projects-page">
+      <SectionLabel number="01">Research Posters</SectionLabel>
+      <div className="page-heading">
+        <h1>
+          Poster
+          <span>Presentations.</span>
+        </h1>
+        <p>
+          Research and course symposium posters from projects where I turned
+          model ideas into explainable systems, demos, and presented work.
+        </p>
+      </div>
+      <div className="poster-list">
+        {posters.map((poster, index) => (
+          <article className="poster-card" key={poster.title}>
+            <div className="poster-card__content">
+              <p className="project-card__number">{String(index + 1).padStart(2, "0")}</p>
+              <h3>{poster.title}</h3>
+              <p className="poster-card__meta">
+                {poster.symposium} · {poster.date} · {poster.location}
+              </p>
+              <p>{poster.description}</p>
+            </div>
+            <div className="poster-gallery">
+              {poster.images.map((image) => (
+                <figure className="poster-gallery__item" key={image.src}>
+                  <PosterImage image={image} />
+                  <figcaption>{image.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+      <button className="button button--ghost hover-grow section-action" onClick={() => navigateTo("/")} type="button">
+        Back Home
+      </button>
+    </section>
+  );
+}
+
 function Publications() {
   return (
     <section className="section-shell" id="publications">
@@ -551,7 +611,9 @@ export default function App() {
     ? "projects"
     : currentPath.replace(/\/$/, "") === "/hackathons"
       ? "hackathons"
-      : "home";
+      : currentPath.replace(/\/$/, "") === "/posters"
+        ? "posters"
+        : "home";
 
   useEffect(() => {
     const handlePopState = () => setCurrentPath(window.location.pathname);
@@ -584,6 +646,8 @@ export default function App() {
           <ProjectsPage navigateTo={navigateTo} />
         ) : currentPage === "hackathons" ? (
           <HackathonsPage navigateTo={navigateTo} />
+        ) : currentPage === "posters" ? (
+          <PostersPage navigateTo={navigateTo} />
         ) : (
           <>
             <Hero />

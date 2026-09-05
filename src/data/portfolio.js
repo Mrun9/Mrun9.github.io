@@ -172,6 +172,7 @@ export const projects = [
       "CNN-LSTM model in PyTorch on MFCC features for real-time speech anxiety detection. Achieved 96% recall with 1.2-1.5s inference latency on rolling 5-second audio windows.",
     tags: ["PyTorch", "CNN-LSTM", "Whisper", "SHAP", "Docker", "Grafana"],
     github: "https://github.com/Mrun9/Co-Wingman-AIS-Project",
+    demo: "https://drive.google.com/drive/folders/1hjqvbGadjIXzxZvnQsuEP7qdYifNApMY",
     featured: true,
   },
   {
@@ -284,6 +285,84 @@ export const hackathons = [
       "Built a smart IoT system to monitor electricity usage and provide insights for more efficient power consumption.",
       "Used a PIR sensor to detect human presence in a room and an Android app to remotely control power supply through relay switches and circuit boards.",
       "Focused on practical energy savings, hardware-software integration, and user-facing recommendations.",
+    ],
+  },
+];
+
+export const posters = [
+  {
+    title: "Solving Captchas via Computer Vision Techniques in Multimodal LLMs",
+    symposium: "Summer Undergraduate Research Symposium",
+    date: "July 2024",
+    location: "University of Notre Dame",
+    description:
+      "Presented work from my summer research internship, where I explored CAPTCHA puzzle solving with computer vision techniques inside a multimodal LLM agent workflow.",
+    images: [
+      {
+        src: "/posters/notre-dame-captcha-1.jpg",
+        alt: "Notre Dame CAPTCHA research poster photo 1",
+        caption: "Poster presentation view",
+      },
+      {
+        src: "/posters/notre-dame-captcha-2.jpg",
+        alt: "Notre Dame CAPTCHA research poster photo 2",
+        caption: "Research symposium moment",
+      },
+      {
+        src: "/posters/notre-dame-captcha-3.jpg",
+        alt: "Notre Dame CAPTCHA research poster photo 3",
+        caption: "Poster details and demo context",
+      },
+    ],
+  },
+  {
+    title: "Co-Wingman: Real-Time Speech Anxiety Detection",
+    symposium: "AI Systems Course Symposium",
+    date: "December 2025",
+    location: "University of Florida",
+    description:
+      "Presented my first-semester UF course project on real-time speech anxiety detection, connecting model design, audio features, and practical AI system behavior.",
+    images: [
+      {
+        src: "/posters/co-wingman-1.jpg",
+        alt: "Co-Wingman poster photo 1",
+        caption: "Course symposium poster",
+      },
+      {
+        src: "/posters/co-wingman-2.jpg",
+        alt: "Co-Wingman poster photo 2",
+        caption: "Real-time speech anxiety detection work",
+      },
+      {
+        src: "/posters/co-wingman-3.jpg",
+        alt: "Co-Wingman poster photo 3",
+        caption: "Implementation and results",
+      },
+    ],
+  },
+  {
+    title: "Adversarial Jailbreak Prompt Detection for LLMs",
+    symposium: "EED Research Symposium",
+    date: "April 2026",
+    location: "University of Florida",
+    description:
+      "Presented a two-stage defense pipeline combining cache-based matching and DistilBERT classification to detect jailbreak and prompt-injection attempts.",
+    images: [
+      {
+        src: "/posters/jailbreak-detection-1.jpg",
+        alt: "Adversarial jailbreak detection poster photo 1",
+        caption: "Research symposium poster",
+      },
+      {
+        src: "/posters/jailbreak-detection-2.jpg",
+        alt: "Adversarial jailbreak detection poster photo 2",
+        caption: "Two-stage defense pipeline",
+      },
+      {
+        src: "/posters/jailbreak-detection-3.jpg",
+        alt: "Adversarial jailbreak detection poster photo 3",
+        caption: "Detection results and discussion",
+      },
     ],
   },
 ];
