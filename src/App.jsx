@@ -4,7 +4,6 @@ import {
   education,
   experiences,
   hackathons,
-  navItems,
   posters,
   profile,
   projectDomains,
@@ -13,6 +12,21 @@ import {
   skills,
   stats,
 } from "./data/portfolio";
+
+const homeSections = [
+  { id: "about", label: "About" },
+  { id: "focus", label: "Focus" },
+  { id: "selected-work", label: "Selected Work" },
+  { id: "contact", label: "Contact" },
+];
+
+const cvSections = [
+  { id: "cv-overview", label: "Overview" },
+  { id: "education", label: "Education" },
+  { id: "experience", label: "Experience" },
+  { id: "skills", label: "Skills" },
+  { id: "publications", label: "Publications" },
+];
 
 const ImageModalContext = createContext(() => {});
 
@@ -180,11 +194,11 @@ function CustomCursor() {
 
 function SidebarNav({ activeSection, currentPage, isScrolled, navigateTo, scrollProgress }) {
   const [isOpen, setIsOpen] = useState(false);
-  const pageSections = [
-    { id: "hero", label: "Home", type: "section" },
-    ...navItems.map((item) => ({ ...item, type: "section" })),
-  ];
+  const pageSections = currentPage === "cv"
+    ? cvSections
+    : [{ id: "hero", label: "Home" }, ...homeSections];
   const archivePages = [
+    { id: "cv", label: "Full CV", type: "page", href: "/cv" },
     { id: "projects", label: "Projects", type: "page", href: "/projects" },
     { id: "hackathons", label: "Hackathons", type: "page", href: "/hackathons" },
     { id: "posters", label: "Research Posters", type: "page", href: "/posters" },
@@ -227,9 +241,11 @@ function SidebarNav({ activeSection, currentPage, isScrolled, navigateTo, scroll
           <div className="side-nav__group">
             <p className="side-nav__heading">On this page</p>
             {pageSections.map((item, index) => {
-            const href =
-              currentPage === "home" ? `#${item.id}` : `/#${item.id}`;
-            const isActive = currentPage === "home" && activeSection === item.id;
+            const isSectionPage = currentPage === "home" || currentPage === "cv";
+            const href = isSectionPage
+              ? `#${item.id}`
+              : `/#${item.id}`;
+            const isActive = isSectionPage && activeSection === item.id;
 
             return (
               <a
@@ -319,8 +335,8 @@ function Hero() {
           <a className="button button--primary hover-grow" href="/projects">
             View Work
           </a>
-          <a className="button button--ghost hover-grow" href={profile.resume} rel="noreferrer" target="_blank">
-            Resume <ArrowUpRight size={17} />
+          <a className="button button--ghost hover-grow" href="/cv">
+            Full CV <ArrowUpRight size={17} />
           </a>
         </div>
       </div>
@@ -376,10 +392,51 @@ function About() {
   );
 }
 
-function Skills() {
+function HomeFocus() {
+  const focusAreas = [
+    {
+      title: "Language intelligence",
+      description: "Designing LLM, RAG, and NLP systems that can reason across text, tools, and context.",
+      tags: ["LLMs", "RAG", "Transformers", "NLP"],
+    },
+    {
+      title: "Trustworthy behavior",
+      description: "Evaluating explanations, guardrails, hallucinations, and adversarial behavior before deployment.",
+      tags: ["Explainable AI", "Chain-of-thought", "Data Visualization"],
+    },
+    {
+      title: "Applied AI systems",
+      description: "Turning model ideas into observable products, APIs, and workflows that hold up in use.",
+      tags: ["PyTorch", "Docker", "REST APIs", "Prometheus"],
+    },
+  ];
+
+  return (
+    <section className="section-shell" id="focus">
+      <SectionLabel number="02">Focus</SectionLabel>
+      <h2>Research questions, built into working systems.</h2>
+      <div className="focus-grid">
+        {focusAreas.map((area) => (
+          <article className="focus-card" key={area.title}>
+            <h3>{area.title}</h3>
+            <p>{area.description}</p>
+            <div className="tag-list">
+              {area.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}
+            </div>
+          </article>
+        ))}
+      </div>
+      <a className="text-link hover-grow section-action" href="/cv#skills">
+        See the complete skills inventory <ArrowUpRight size={16} />
+      </a>
+    </section>
+  );
+}
+
+function Skills({ number = "03" }) {
   return (
     <section className="section-shell" id="skills">
-      <SectionLabel number="02">Technical Skills</SectionLabel>
+      <SectionLabel number={number}>Technical Skills</SectionLabel>
       <h2>What I work with.</h2>
       <div className="card-grid">
         {skills.map((group) => (
@@ -433,20 +490,20 @@ function Timeline({ items }) {
   );
 }
 
-function Education() {
+function Education({ number = "01" }) {
   return (
     <section className="section-shell" id="education">
-      <SectionLabel number="03">Education</SectionLabel>
+      <SectionLabel number={number}>Education</SectionLabel>
       <h2>Academic foundation.</h2>
       <Timeline items={education} />
     </section>
   );
 }
 
-function Experience() {
+function Experience({ number = "02" }) {
   return (
     <section className="section-shell" id="experience">
-      <SectionLabel number="04">Experience</SectionLabel>
+      <SectionLabel number={number}>Experience</SectionLabel>
       <h2>Research and applied work.</h2>
       <Timeline items={experiences} />
     </section>
@@ -524,6 +581,48 @@ function ProjectCard({ project, index }) {
         </ul>
       </dialog>
     </article>
+  );
+}
+
+function SelectedWork() {
+  const featuredProjects = projects.filter((project) => project.featured).slice(0, 3);
+  const recentRoles = experiences.slice(0, 3);
+
+  return (
+    <section className="section-shell" id="selected-work">
+      <SectionLabel number="03">Selected Work</SectionLabel>
+      <div className="selected-work__heading">
+        <h2>A few signals of how I think and build.</h2>
+        <p>
+          My recent work connects model evaluation, multimodal systems, and the
+          engineering needed to make AI useful in practice.
+        </p>
+      </div>
+      <div className="project-grid project-grid--selected">
+        {featuredProjects.map((project, index) => (
+          <ProjectCard index={index} key={project.title} project={project} />
+        ))}
+      </div>
+      <div className="home-snapshot">
+        <div>
+          <p className="eyebrow">Recent trajectory</p>
+          <h3>From research labs to production-minded AI teams.</h3>
+        </div>
+        <div className="snapshot-list">
+          {recentRoles.map((role) => (
+            <article className="snapshot-item" key={`${role.date}-${role.title}`}>
+              <p>{role.date}</p>
+              <h3>{role.title}</h3>
+              <span>{role.organization}</span>
+            </article>
+          ))}
+        </div>
+      </div>
+      <div className="section-links">
+        <a className="button button--primary hover-grow" href="/projects">Explore all projects</a>
+        <a className="button button--ghost hover-grow" href="/cv">Read the full CV <ArrowUpRight size={17} /></a>
+      </div>
+    </section>
   );
 }
 
@@ -728,10 +827,10 @@ function PostersPage({ navigateTo }) {
   );
 }
 
-function Publications() {
+function Publications({ number = "04" }) {
   return (
     <section className="section-shell" id="publications">
-      <SectionLabel number="06">Research</SectionLabel>
+      <SectionLabel number={number}>Publications</SectionLabel>
       <h2>Published work.</h2>
       <div className="publication-list">
         {publications.map((publication) => (
@@ -759,6 +858,46 @@ function Publications() {
   );
 }
 
+function CVPage() {
+  return (
+    <div className="cv-page">
+      <section className="section-shell cv-hero" id="cv-overview">
+        <SectionLabel number="00">Curriculum Vitae</SectionLabel>
+        <div className="cv-hero__grid">
+          <div>
+            <h1>
+              Full
+              <span>CV.</span>
+            </h1>
+            <p className="hero__text">
+              The complete record of my education, research and engineering
+              experience, technical toolkit, and publications.
+            </p>
+          </div>
+          <div className="cv-hero__summary">
+            <p>
+              I work where AI research meets software engineering, with a focus
+              on multimodal systems, language intelligence, trustworthy model
+              behavior, and measurable product performance.
+            </p>
+            <div className="cv-hero__meta">
+              <span>{profile.location}</span>
+              <a href={`mailto:${profile.email}`}>{profile.email}</a>
+            </div>
+            <a className="button button--primary hover-grow" href={profile.resume} rel="noreferrer" target="_blank">
+              Download PDF <ArrowUpRight size={17} />
+            </a>
+          </div>
+        </div>
+      </section>
+      <Education number="01" />
+      <Experience number="02" />
+      <Skills number="03" />
+      <Publications number="04" />
+    </div>
+  );
+}
+
 function Contact() {
   const [copyLabel, setCopyLabel] = useState("Copy Email");
 
@@ -770,7 +909,7 @@ function Contact() {
 
   return (
     <section className="section-shell contact-section" id="contact">
-      <SectionLabel number="07">Contact</SectionLabel>
+      <SectionLabel number="04">Contact</SectionLabel>
       <h2>Let&apos;s connect.</h2>
       <p>
         Whether it is research collaboration, internships, or a conversation
@@ -793,15 +932,23 @@ function Contact() {
 export default function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
   const [selectedImage, setSelectedImage] = useState(null);
-  const sectionIds = useMemo(() => ["hero", ...navItems.map((item) => item.id)], []);
-  const { activeSection, progress, isScrolled } = useScrollNavigation(sectionIds);
-  const currentPage = currentPath.replace(/\/$/, "") === "/projects"
+  const normalizedPath = currentPath.replace(/\/$/, "") || "/";
+  const currentPage = normalizedPath === "/projects"
     ? "projects"
-    : currentPath.replace(/\/$/, "") === "/hackathons"
+    : normalizedPath === "/hackathons"
       ? "hackathons"
-      : currentPath.replace(/\/$/, "") === "/posters"
+      : normalizedPath === "/posters"
         ? "posters"
-        : "home";
+        : normalizedPath === "/cv"
+          ? "cv"
+          : "home";
+  const sectionIds = useMemo(
+    () => currentPage === "cv"
+      ? cvSections.map((item) => item.id)
+      : ["hero", ...homeSections.map((item) => item.id)],
+    [currentPage]
+  );
+  const { activeSection, progress, isScrolled } = useScrollNavigation(sectionIds);
 
   useEffect(() => {
     const handlePopState = () => setCurrentPath(window.location.pathname);
@@ -809,6 +956,12 @@ export default function App() {
 
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
+
+  useEffect(() => {
+    document.title = currentPage === "cv"
+      ? `${profile.name} | Curriculum Vitae`
+      : `${profile.name} | AI/ML Researcher`;
+  }, [currentPage]);
 
   const navigateTo = (path) => {
     const [pathname, hash] = path.split("#");
@@ -842,14 +995,14 @@ export default function App() {
           <HackathonsPage navigateTo={navigateTo} />
         ) : currentPage === "posters" ? (
           <PostersPage navigateTo={navigateTo} />
+        ) : currentPage === "cv" ? (
+          <CVPage />
         ) : (
           <>
             <Hero />
             <About />
-            <Skills />
-            <Education />
-            <Experience />
-            <Publications />
+            <HomeFocus />
+            <SelectedWork />
             <Contact />
           </>
         )}
