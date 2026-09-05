@@ -186,7 +186,7 @@ export const projectDomains = [
     id: "software-web",
     title: "Software Products & Web",
     description: "User-facing applications that turn technical ideas into usable experiences.",
-    image: "/project-domains/software-web.jpg",
+    image: "/project-domains/software-web-v2.jpg",
     imageAlt: "Layered web and mobile interfaces representing software products",
   },
 ];
