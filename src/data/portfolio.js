@@ -74,6 +74,9 @@ export const skills = [
   {
     title: "Coursework Highlights",
     items: [
+      "Pattern Recognition in Intelligent Systems",
+      "Agentic AI",
+      "Engineering Innovation",
       "Trustworthy ML",
       "Computer Vision",
       "AI Ethics",
@@ -91,7 +94,7 @@ export const education = [
     organization: "University of Florida - Gainesville, FL",
     detail: "GPA: 3.89/4.0",
     description:
-      "Coursework: AI Systems, Machine Learning, Applied Deep Learning, Trustworthy ML, Computer Vision & Image Processing, AI Ethics.",
+      "Current coursework: Pattern Recognition in Intelligent Systems, Agentic AI, and Engineering Innovation. Additional coursework includes AI Systems, Machine Learning, Applied Deep Learning, Trustworthy ML, Computer Vision & Image Processing, and AI Ethics.",
   },
   {
     date: "Aug 2021 - Jun 2025",
@@ -120,6 +123,13 @@ export const education = [
 ];
 
 export const experiences = [
+  {
+    date: "Jun 2026 - Aug 2026",
+    title: "Software Intern, Digital Cloud Solutions",
+    organization: "KPMG India",
+    description:
+      "Built enterprise AI applications using Azure OpenAI, LangChain, GitHub Copilot, and Azure cloud services to automate software development workflows, enabling real-time monitoring, insight generation, and intelligent SDLC automation. Developed a domain-independent platform of multi-agent workflows for automated data understanding, autonomous KPI discovery, insight generation, and predictive analytics.",
+  },
   {
     date: "Apr 2026 - Present",
     title: "AI Software Engineer",

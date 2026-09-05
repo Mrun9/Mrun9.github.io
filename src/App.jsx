@@ -1,5 +1,5 @@
 import { ArrowUpRight, Github, Linkedin, Mail, Menu, X } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import {
   education,
   experiences,
@@ -12,6 +12,65 @@ import {
   skills,
   stats,
 } from "./data/portfolio";
+
+const ImageModalContext = createContext(() => {});
+
+function ImageLightbox({ image, onClose }) {
+  useEffect(() => {
+    if (!image) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [image, onClose]);
+
+  if (!image) return null;
+
+  return (
+    <div
+      className="image-lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label={image.caption}
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
+      <button className="image-lightbox__close" type="button" onClick={onClose} aria-label="Close image" autoFocus>
+        <X size={22} />
+      </button>
+      <figure className="image-lightbox__figure">
+        <img src={image.src} alt={image.alt} />
+        <figcaption>{image.caption}</figcaption>
+      </figure>
+    </div>
+  );
+}
+
+function OpenableImage({ alt, caption, className = "", onError, src }) {
+  const openImage = useContext(ImageModalContext);
+
+  return (
+    <button
+      className={`image-trigger ${className}`.trim()}
+      type="button"
+      onClick={() => openImage({ src, alt, caption })}
+      aria-label={`Open image: ${caption}`}
+    >
+      <img src={src} alt={alt} onError={onError} />
+      <span className="image-trigger__hint">View image</span>
+    </button>
+  );
+}
 
 function useScrollNavigation(sectionIds) {
   const [scrollState, setScrollState] = useState({
@@ -265,9 +324,16 @@ function Hero() {
         </div>
       </div>
 
-      <div className="portrait-panel" aria-label="Portrait of Mrunal Vibhute">
-        <img src={profile.photo} alt="Mrunal Vibhute" />
-      </div>
+      <figure className="portrait-panel">
+        <OpenableImage
+          src={profile.photo}
+          alt="Portrait of Mrunal Vibhute"
+          caption="Mrunal Vibhute · AI researcher and software engineer"
+        />
+        <figcaption className="portrait-panel__caption">
+          Mrunal Vibhute · AI researcher and software engineer
+        </figcaption>
+      </figure>
     </section>
   );
 }
@@ -465,13 +531,19 @@ function HackathonsPage({ navigateTo }) {
                   {hackathon.media.map((item) => (
                     <div className="hackathon-media-item" key={item.src + item.caption}>
                       {item.type === "image" ? (
-                        <img src={item.src} alt={item.alt || hackathon.title} />
+                        <OpenableImage
+                          src={item.src}
+                          alt={item.alt || hackathon.title}
+                          caption={item.caption || item.alt || hackathon.title}
+                        />
                       ) : (
                         <a className="text-link hover-grow" href={item.src} rel="noreferrer" target="_blank">
                           Open media <ArrowUpRight size={16} />
                         </a>
                       )}
-                      {item.caption ? <p>{item.caption}</p> : null}
+                      {item.type === "image" ? (
+                        <p>{item.caption || item.alt || hackathon.title}</p>
+                      ) : item.caption ? <p>{item.caption}</p> : null}
                     </div>
                   ))}
                 </div>
@@ -543,7 +615,14 @@ function PosterImage({ image }) {
     );
   }
 
-  return <img src={image.src} alt={image.alt} onError={() => setIsMissing(true)} />;
+  return (
+    <OpenableImage
+      src={image.src}
+      alt={image.alt}
+      caption={image.caption}
+      onError={() => setIsMissing(true)}
+    />
+  );
 }
 
 function PostersPage({ navigateTo }) {
@@ -653,6 +732,7 @@ function Contact() {
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const [selectedImage, setSelectedImage] = useState(null);
   const sectionIds = useMemo(() => ["hero", ...navItems.map((item) => item.id)], []);
   const { activeSection, progress, isScrolled } = useScrollNavigation(sectionIds);
   const currentPage = currentPath.replace(/\/$/, "") === "/projects"
@@ -686,7 +766,7 @@ export default function App() {
   };
 
   return (
-    <>
+    <ImageModalContext.Provider value={setSelectedImage}>
       <CustomCursor />
       <SidebarNav
         activeSection={activeSection}
@@ -715,6 +795,7 @@ export default function App() {
         )}
         <footer>Designed and built by Mrunal Vibhute · 2026</footer>
       </main>
-    </>
+      <ImageLightbox image={selectedImage} onClose={() => setSelectedImage(null)} />
+    </ImageModalContext.Provider>
   );
 }
