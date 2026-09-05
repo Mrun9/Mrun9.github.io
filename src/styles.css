@@ -363,6 +363,25 @@ h3 {
   max-width: 620px;
 }
 
+.hero__availability {
+  align-items: center;
+  background: var(--accent-soft);
+  border: 1px solid rgba(20, 125, 116, 0.18);
+  border-radius: 999px;
+  color: var(--accent-strong);
+  display: inline-flex;
+  flex-wrap: wrap;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.8rem;
+  gap: 8px;
+  margin: 4px 0 0;
+  padding: 9px 13px;
+}
+
+.hero__availability span {
+  color: var(--violet);
+}
+
 .hero__actions,
 .contact-actions {
   display: flex;
@@ -1233,9 +1252,17 @@ h3 {
   padding: clamp(26px, 5vw, 48px);
 }
 
-.home-snapshot h3 {
+.home-snapshot > div > h2 {
+  color: #fff;
   font-size: clamp(1.45rem, 3vw, 2.25rem);
   line-height: 1.15;
+  margin-bottom: 18px;
+}
+
+.home-snapshot__copy {
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.7;
+  max-width: 520px;
 }
 
 .snapshot-list {
@@ -1280,6 +1307,17 @@ h3 {
   flex-wrap: wrap;
   gap: 14px;
   margin-top: 28px;
+}
+
+.research-highlight-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.research-highlight {
+  grid-template-columns: 64px 1fr;
+  height: 100%;
 }
 
 .cv-page .section-shell:not(.cv-hero) {
@@ -1399,6 +1437,7 @@ h3 {
   .stats-grid,
   .focus-grid,
   .project-grid--selected,
+  .research-highlight-grid,
   .cv-page #skills .card-grid {
     grid-template-columns: 1fr;
   }

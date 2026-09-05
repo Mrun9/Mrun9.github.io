@@ -89,7 +89,7 @@ export const skills = [
 
 export const education = [
   {
-    date: "Aug 2025 - Jun 2027",
+    date: "Aug 2025 - Expected May 2027",
     title: "M.S. Artificial Intelligence Systems",
     organization: "University of Florida - Gainesville, FL",
     detail: "GPA: 3.89/4.0",

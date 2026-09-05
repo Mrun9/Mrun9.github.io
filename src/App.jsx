@@ -14,9 +14,11 @@ import {
 } from "./data/portfolio";
 
 const homeSections = [
-  { id: "about", label: "About" },
-  { id: "focus", label: "Focus" },
   { id: "selected-work", label: "Selected Work" },
+  { id: "about", label: "About" },
+  { id: "experience-highlights", label: "Experience" },
+  { id: "research-highlights", label: "Research" },
+  { id: "skills-snapshot", label: "Skills" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -329,7 +331,11 @@ function Hero() {
         </h1>
         <p className="hero__role">{profile.roleWords[wordIndex]}</p>
         <p className="hero__text">
-          I’m drawn to the space between AI research and real-world systems, where models need to work, explain themselves, and behave well under pressure.
+          I build AI systems that move research into practice—from language and
+          multimodal models to evaluation, observability, and trustworthy product behavior.
+        </p>
+        <p className="hero__availability">
+          Expected graduation: May 2027 <span>·</span> Seeking full-time opportunities
         </p>
         <div className="hero__actions">
           <a className="button button--primary hover-grow" href="/projects">
@@ -359,7 +365,7 @@ function About() {
   return (
     <section className="section-shell two-column" id="about">
       <div>
-        <SectionLabel number="01">About Me</SectionLabel>
+        <SectionLabel number="02">About Me</SectionLabel>
         <h2>Building AI that works beyond the demo.</h2>
       </div>
       <div className="copy-block">
@@ -375,9 +381,9 @@ function About() {
           the notebook.
         </p>
         <p>
-          As I finish my graduate program next year, I am looking to bring that
-          research-to-reality mindset into industry, building AI products that
-          are useful, measurable, and responsible.
+          I expect to complete my M.S. in Artificial Intelligence Systems in May
+          2027 and am seeking full-time opportunities where I can bring that
+          research-to-reality mindset to useful, measurable, responsible AI products.
         </p>
         <div className="stats-grid">
           {stats.map((stat) => (
@@ -392,7 +398,7 @@ function About() {
   );
 }
 
-function HomeFocus() {
+function SkillsSnapshot() {
   const focusAreas = [
     {
       title: "Language intelligence",
@@ -412,9 +418,9 @@ function HomeFocus() {
   ];
 
   return (
-    <section className="section-shell" id="focus">
-      <SectionLabel number="02">Focus</SectionLabel>
-      <h2>Research questions, built into working systems.</h2>
+    <section className="section-shell" id="skills-snapshot">
+      <SectionLabel number="05">Skills Snapshot</SectionLabel>
+      <h2>The toolkit behind the work.</h2>
       <div className="focus-grid">
         {focusAreas.map((area) => (
           <article className="focus-card" key={area.title}>
@@ -427,7 +433,7 @@ function HomeFocus() {
         ))}
       </div>
       <a className="text-link hover-grow section-action" href="/cv#skills">
-        See the complete skills inventory <ArrowUpRight size={16} />
+        View the complete skills inventory <ArrowUpRight size={16} />
       </a>
     </section>
   );
@@ -586,11 +592,10 @@ function ProjectCard({ project, index }) {
 
 function SelectedWork() {
   const featuredProjects = projects.filter((project) => project.featured).slice(0, 3);
-  const recentRoles = experiences.slice(0, 3);
 
   return (
     <section className="section-shell" id="selected-work">
-      <SectionLabel number="03">Selected Work</SectionLabel>
+      <SectionLabel number="01">Selected Work</SectionLabel>
       <div className="selected-work__heading">
         <h2>A few signals of how I think and build.</h2>
         <p>
@@ -603,10 +608,28 @@ function SelectedWork() {
           <ProjectCard index={index} key={project.title} project={project} />
         ))}
       </div>
+      <div className="section-links">
+        <a className="button button--primary hover-grow" href="/projects">Explore all projects</a>
+      </div>
+    </section>
+  );
+}
+
+function ExperienceHighlights() {
+  const recentRoles = experiences.slice(0, 3);
+
+  return (
+    <section className="section-shell" id="experience-highlights">
+      <SectionLabel number="03">Experience Highlights</SectionLabel>
       <div className="home-snapshot">
         <div>
           <p className="eyebrow">Recent trajectory</p>
-          <h3>From research labs to production-minded AI teams.</h3>
+          <h2>Research depth, product instincts.</h2>
+          <p className="home-snapshot__copy">
+            I have worked across enterprise AI, a student-founded GenAI product,
+            and academic research—learning how to evaluate ideas and carry them
+            into systems people can use.
+          </p>
         </div>
         <div className="snapshot-list">
           {recentRoles.map((role) => (
@@ -618,10 +641,44 @@ function SelectedWork() {
           ))}
         </div>
       </div>
-      <div className="section-links">
-        <a className="button button--primary hover-grow" href="/projects">Explore all projects</a>
-        <a className="button button--ghost hover-grow" href="/cv">Read the full CV <ArrowUpRight size={17} /></a>
+      <a className="text-link hover-grow section-action" href="/cv#experience">
+        Read complete experience details <ArrowUpRight size={16} />
+      </a>
+    </section>
+  );
+}
+
+function ResearchHighlights() {
+  const selectedPublications = publications.slice(0, 2);
+
+  return (
+    <section className="section-shell" id="research-highlights">
+      <SectionLabel number="04">Research Highlights</SectionLabel>
+      <div className="selected-work__heading">
+        <h2>Research that explains, navigates, and holds up.</h2>
+        <p>
+          My published work spans autonomous web agents and interpretable machine
+          learning, with an emphasis on systems that remain understandable in use.
+        </p>
       </div>
+      <div className="research-highlight-grid">
+        {selectedPublications.map((publication) => (
+          <article className="publication-item research-highlight" key={publication.title}>
+            <span>{publication.year}</span>
+            <div>
+              <h3>{publication.title}</h3>
+              <p className="publication-item__venue">{publication.venue}</p>
+              <p>{publication.description}</p>
+              <a className="text-link hover-grow" href={publication.read} rel="noreferrer" target="_blank">
+                Read paper <ArrowUpRight size={16} />
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+      <a className="text-link hover-grow section-action" href="/cv#publications">
+        View all publications <ArrowUpRight size={16} />
+      </a>
     </section>
   );
 }
@@ -909,7 +966,7 @@ function Contact() {
 
   return (
     <section className="section-shell contact-section" id="contact">
-      <SectionLabel number="04">Contact</SectionLabel>
+      <SectionLabel number="06">Contact</SectionLabel>
       <h2>Let&apos;s connect.</h2>
       <p>
         Whether it is research collaboration, internships, or a conversation
@@ -1000,9 +1057,11 @@ export default function App() {
         ) : (
           <>
             <Hero />
-            <About />
-            <HomeFocus />
             <SelectedWork />
+            <About />
+            <ExperienceHighlights />
+            <ResearchHighlights />
+            <SkillsSnapshot />
             <Contact />
           </>
         )}
