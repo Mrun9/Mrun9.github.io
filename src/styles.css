@@ -699,7 +699,7 @@ h3 {
 
 .timeline-item__date,
 .project-card__number,
-.publication-item span {
+.publication-item > span {
   color: var(--violet);
   font-family: "JetBrains Mono", monospace;
   font-size: 0.78rem;
@@ -1200,6 +1200,28 @@ h3 {
   gap: 22px;
   grid-template-columns: 80px 1fr;
   padding: 24px;
+}
+
+.publication-authors {
+  color: var(--muted);
+  font-size: 0.87rem !important;
+  line-height: 1.6 !important;
+  margin: -7px 0 12px;
+}
+
+.publication-authors span {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  text-transform: none;
+}
+
+.publication-authors .publication-author--self {
+  background: var(--accent-soft);
+  border-radius: 4px;
+  color: var(--accent-strong);
+  font-weight: 700;
+  padding: 2px 4px;
 }
 
 .contact-section {
@@ -1712,6 +1734,10 @@ h3 {
 
 .cv-publication-list p + p {
   margin-top: 7px;
+}
+
+.cv-publication-list .publication-authors {
+  margin: 0 0 8px;
 }
 
 .cv-publication-list p strong {

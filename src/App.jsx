@@ -669,8 +669,8 @@ function ResearchHighlights() {
       <div className="selected-work__heading">
         <h2>Research that explains, navigates, and holds up.</h2>
         <p>
-          My published work spans autonomous web agents and interpretable machine
-          learning, with an emphasis on systems that remain understandable in use.
+          My work spans multimodal evaluation, agentic systems, and interpretable
+          machine learning, with an emphasis on systems that remain understandable in use.
         </p>
       </div>
       <div className="research-highlight-grid">
@@ -679,6 +679,7 @@ function ResearchHighlights() {
             <span>{publication.year}</span>
             <div>
               <h3>{publication.title}</h3>
+              <PublicationAuthors authors={publication.authors} />
               <p className="publication-item__venue">{publication.venue}</p>
               <p>{publication.description}</p>
               <a className="text-link hover-grow" href={publication.read} rel="noreferrer" target="_blank">
@@ -907,6 +908,7 @@ function Publications({ number = "04" }) {
             <span>{publication.year}</span>
             <div>
               <h3>{publication.title}</h3>
+              <PublicationAuthors authors={publication.authors} />
               <p className="publication-item__venue">{publication.venue}</p>
               <p>{publication.description}</p>
               {publication.read || publication.doi ? (
@@ -924,6 +926,18 @@ function Publications({ number = "04" }) {
         ))}
       </div>
     </section>
+  );
+}
+
+function PublicationAuthors({ authors = [] }) {
+  return (
+    <p className="publication-authors">
+      {authors.map((author, index) => (
+        <span className={author === profile.name ? "publication-author--self" : ""} key={author}>
+          {author}{index < authors.length - 1 ? ", " : ""}
+        </span>
+      ))}
+    </p>
   );
 }
 
@@ -960,7 +974,7 @@ function CVPage() {
             prototyping through deployment, observability, and measurable product outcomes.
           </p>
           <div className="cv-signal-row" aria-label="Career highlights">
-            <span><strong>3</strong> peer-reviewed publications</span>
+            <span><strong>5</strong> publications</span>
             <span><strong>20+</strong> technical projects</span>
             <span><strong>4</strong> current and recent roles</span>
             <span><strong>2027</strong> full-time availability</span>
@@ -1041,6 +1055,7 @@ function CVPage() {
               <li key={publication.title}>
                 <div>
                   <h3>{publication.title}</h3>
+                  <PublicationAuthors authors={publication.authors} />
                   <p><strong>{publication.venue}</strong> · {publication.year}</p>
                   <p>{publication.description}</p>
                 </div>

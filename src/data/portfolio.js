@@ -27,7 +27,7 @@ export const profile = {
 };
 
 export const stats = [
-  { value: "3", label: "Publications" },
+  { value: "5", label: "Publications" },
   { value: "7", label: "Citations" },
   { value: "20+", label: "Projects" },
 ];
@@ -454,8 +454,36 @@ export const posters = [
 
 export const publications = [
   {
+    year: "2026",
+    title: "PEMAND: Persona-Enriched Multi-Agent Negotiation for Household Decision-Making",
+    authors: [
+      "Yuran Sun",
+      "Mustafa Sameen",
+      "Yaotian Zhang",
+      "Rongguan Gu",
+      "Mrunal Vibhute",
+      "Chia-yu Wu",
+      "Yuanyuan Lei",
+      "Xilei Zhao",
+    ],
+    venue: "arXiv preprint",
+    description:
+      "Introduces a theory-grounded multi-agent framework that models household personas and structured negotiation, outperforming state-of-the-art benchmarks across travel behavior and residential mobility datasets.",
+    read: "https://arxiv.org/html/2604.10475v2",
+  },
+  {
+    year: "2026",
+    title: "Evaluating Multimodal LLMs on CAPTCHAs with LLM Puzzler",
+    authors: ["Mrunal Vibhute", "Kristina Radivojevic", "Paul Brenner"],
+    venue: "Agents and Artificial Intelligence (ICAART 2025) - Springer LNAI 16516",
+    description:
+      "Evaluates OpenAI and Anthropic multimodal models on increasingly complex image-puzzle CAPTCHAs, providing a reproducible framework for measuring visual reasoning accuracy and response time.",
+    read: "https://link.springer.com/chapter/10.1007/978-3-032-25029-2_9",
+  },
+  {
     year: "2025",
     title: "Multimodal Web Agents for Automated (Dark) Web Navigation",
+    authors: ["Mrunal Vibhute", "Neol Gutierrez", "Kristina Radivojevic", "Paul R. Brenner"],
     venue: "ICAART 2025 - Lecture Notes in Artificial Intelligence (LNAI)",
     description:
       "Proposes an autonomous browsing system that uses visual and textual cues to traverse both surface and hidden websites for complex information-gathering tasks.",
@@ -464,6 +492,7 @@ export const publications = [
   {
     year: "2025",
     title: "Interpretable Fake News Detection Using Neural Networks and LIME",
+    authors: ["Mrunal Vibhute", "Anjali Naik"],
     venue: "ISD4SD 2025 - Springer",
     description:
       "Builds a transparent misinformation classifier that highlights human-readable evidence within articles to explain why content is considered unreliable.",
@@ -472,6 +501,7 @@ export const publications = [
   {
     year: "2024",
     title: "USD-INR Exchange Rate Prediction Using LSTM",
+    authors: ["Mrunal Vibhute", "Shreya Mote", "Varsha Pimprale"],
     venue: "ICICT 2024 - Springer",
     description:
       "Analyzes macroeconomic indicators and historical market data with a deep recurrent architecture to forecast future movements in a major currency pair.",
