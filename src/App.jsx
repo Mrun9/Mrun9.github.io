@@ -23,11 +23,13 @@ const homeSections = [
 ];
 
 const cvSections = [
-  { id: "cv-overview", label: "Overview" },
+  { id: "cv-overview", label: "Profile" },
   { id: "education", label: "Education" },
   { id: "experience", label: "Experience" },
-  { id: "skills", label: "Skills" },
+  { id: "cv-projects", label: "Selected Projects" },
   { id: "publications", label: "Publications" },
+  { id: "cv-achievements", label: "Achievements" },
+  { id: "skills", label: "Technical Skills" },
 ];
 
 const ImageModalContext = createContext(() => {});
@@ -926,41 +928,151 @@ function Publications({ number = "04" }) {
 }
 
 function CVPage() {
+  const selectedProjects = projects.filter((project) => project.featured).concat(projects.slice(3, 5));
+
   return (
     <div className="cv-page">
-      <section className="section-shell cv-hero" id="cv-overview">
-        <SectionLabel number="00">Curriculum Vitae</SectionLabel>
-        <div className="cv-hero__grid">
-          <div>
-            <h1>
-              Full
-              <span>CV.</span>
-            </h1>
-            <p className="hero__text">
-              The complete record of my education, research and engineering
-              experience, technical toolkit, and publications.
-            </p>
-          </div>
-          <div className="cv-hero__summary">
-            <p>
-              I work where AI research meets software engineering, with a focus
-              on multimodal systems, language intelligence, trustworthy model
-              behavior, and measurable product performance.
-            </p>
-            <div className="cv-hero__meta">
-              <span>{profile.location}</span>
-              <a href={`mailto:${profile.email}`}>{profile.email}</a>
-            </div>
-            <a className="button button--primary hover-grow" href={profile.resume} rel="noreferrer" target="_blank">
-              Download PDF <ArrowUpRight size={17} />
+      <article className="cv-document">
+        <header className="cv-header" id="cv-overview">
+          <div className="cv-header__topline">
+            <p>Curriculum Vitae</p>
+            <a href={profile.resume} rel="noreferrer" target="_blank">
+              Download PDF <ArrowUpRight size={15} />
             </a>
           </div>
-        </div>
-      </section>
-      <Education number="01" />
-      <Experience number="02" />
-      <Skills number="03" />
-      <Publications number="04" />
+          <div className="cv-header__identity">
+            <div>
+              <h1>{profile.name}</h1>
+              <p className="cv-header__role">AI/ML Researcher · Software Engineer</p>
+            </div>
+            <div className="cv-contact" aria-label="Contact details">
+              <span>{profile.location}</span>
+              <a href={`mailto:${profile.email}`}>{profile.email}</a>
+              <a href={profile.linkedin} rel="noreferrer" target="_blank">LinkedIn</a>
+              <a href={profile.github} rel="noreferrer" target="_blank">GitHub</a>
+              <a href={profile.scholar} rel="noreferrer" target="_blank">Google Scholar</a>
+            </div>
+          </div>
+          <p className="cv-summary">
+            AI systems graduate student and software engineer working across applied
+            research, production GenAI, multimodal systems, and trustworthy machine
+            learning. Experienced in taking ideas from model evaluation and rapid
+            prototyping through deployment, observability, and measurable product outcomes.
+          </p>
+          <div className="cv-signal-row" aria-label="Career highlights">
+            <span><strong>3</strong> peer-reviewed publications</span>
+            <span><strong>20+</strong> technical projects</span>
+            <span><strong>4</strong> current and recent roles</span>
+            <span><strong>2027</strong> full-time availability</span>
+          </div>
+        </header>
+
+        <section className="cv-section" id="education">
+          <h2><span>01</span> Education</h2>
+          <div className="cv-entry-list">
+            {education.map((item) => (
+              <article className="cv-entry" key={`${item.date}-${item.title}`}>
+                <p className="cv-entry__date">{item.date}</p>
+                <div>
+                  <div className="cv-entry__heading">
+                    <h3>{item.title}</h3>
+                    {item.detail ? <strong>{item.detail}</strong> : null}
+                  </div>
+                  <p className="cv-entry__organization">{item.organization}</p>
+                  <p className="cv-entry__description">{item.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="cv-section" id="experience">
+          <h2><span>02</span> Research &amp; Engineering Experience</h2>
+          <div className="cv-entry-list">
+            {experiences.map((item) => (
+              <article className="cv-entry" key={`${item.date}-${item.title}`}>
+                <p className="cv-entry__date">{item.date}</p>
+                <div>
+                  <div className="cv-entry__heading">
+                    <h3>{item.title}</h3>
+                    <strong>{item.organization}</strong>
+                  </div>
+                  <p className="cv-entry__description">{item.description}</p>
+                  {item.links ? (
+                    <div className="cv-inline-links">
+                      {item.links.map((link) => (
+                        <a href={link.href} key={link.href} rel="noreferrer" target="_blank">
+                          {link.label} <ArrowUpRight size={13} />
+                        </a>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="cv-section" id="cv-projects">
+          <h2><span>03</span> Selected Projects</h2>
+          <div className="cv-project-list">
+            {selectedProjects.map((project) => (
+              <article className="cv-project" key={project.title}>
+                <div className="cv-project__heading">
+                  <h3>{project.title}</h3>
+                  <a href={project.github} rel="noreferrer" target="_blank">Code <ArrowUpRight size={13} /></a>
+                </div>
+                <p>{project.bullets[0]}</p>
+                <div className="cv-project__tags">{project.tags.slice(0, 5).join(" · ")}</div>
+              </article>
+            ))}
+          </div>
+          <a className="cv-section__more" href="/projects">View complete project archive <ArrowUpRight size={14} /></a>
+        </section>
+
+        <section className="cv-section" id="publications">
+          <h2><span>04</span> Publications</h2>
+          <ol className="cv-publication-list">
+            {publications.map((publication) => (
+              <li key={publication.title}>
+                <div>
+                  <h3>{publication.title}</h3>
+                  <p><strong>{publication.venue}</strong> · {publication.year}</p>
+                  <p>{publication.description}</p>
+                </div>
+                <a href={publication.read || publication.doi} rel="noreferrer" target="_blank" aria-label={`Read ${publication.title}`}>
+                  Paper <ArrowUpRight size={13} />
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="cv-section" id="cv-achievements">
+          <h2><span>05</span> Awards &amp; Achievements</h2>
+          <div className="cv-achievement-list">
+            {hackathons.map((item) => (
+              <article key={item.title}>
+                <span>{item.timeframe.split(" · ")[0]}</span>
+                <div><h3>{item.achievement}</h3><p>{item.title}</p></div>
+              </article>
+            ))}
+          </div>
+          <a className="cv-section__more" href="/hackathons">View hackathon details <ArrowUpRight size={14} /></a>
+        </section>
+
+        <section className="cv-section cv-section--skills" id="skills">
+          <h2><span>06</span> Technical Skills</h2>
+          <div className="cv-skill-list">
+            {skills.slice(0, 5).map((group) => (
+              <div key={group.title}>
+                <h3>{group.title}</h3>
+                <p>{group.items.join(" · ")}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </article>
     </div>
   );
 }
