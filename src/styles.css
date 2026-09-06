@@ -1776,6 +1776,37 @@ h3 {
   margin: 0;
 }
 
+.cv-leadership-list {
+  display: grid;
+}
+
+.cv-leadership-list article {
+  display: grid;
+  gap: 28px;
+  grid-template-columns: 160px minmax(0, 1fr);
+  padding: 22px 0;
+}
+
+.cv-leadership-list article:first-child {
+  padding-top: 0;
+}
+
+.cv-leadership-list article + article {
+  border-top: 1px solid rgba(222, 216, 204, 0.68);
+}
+
+.cv-leadership-list h3 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.cv-leadership-list p:not(.cv-entry__date) {
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.6;
+  margin: 6px 0 0;
+}
+
 .cv-section--skills {
   padding-bottom: 0;
 }
@@ -1979,7 +2010,8 @@ h3 {
   }
 
   .cv-entry,
-  .cv-achievement-list li {
+  .cv-achievement-list li,
+  .cv-leadership-list article {
     gap: 8px;
     grid-template-columns: 1fr;
   }

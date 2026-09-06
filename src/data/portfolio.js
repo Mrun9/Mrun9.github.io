@@ -386,6 +386,21 @@ export const hackathons = [
 
 export const achievements = [
   {
+    year: "2024",
+    description:
+      "Selected for the fully funded International Summer Undergraduate Research Experience (iSURE) at the University of Notre Dame.",
+  },
+  {
+    year: "2025",
+    description:
+      "Nominated for the Best Outgoing Student Award by the Computer Engineering Department at Cummins College of Engineering.",
+  },
+  {
+    year: "2021",
+    description:
+      "Named Best Outgoing Student upon completing high school.",
+  },
+  {
     year: "2024 - 2026",
     description:
       "Published five AI/ML research papers through Springer, SciTePress, and arXiv, including four first-author publications.",
@@ -424,6 +439,37 @@ export const achievements = [
     year: "2022",
     description:
       "Won Aavishkar at both the zonal and collegiate levels with an IoT system for monitoring and reducing electricity consumption.",
+  },
+];
+
+export const leadership = [
+  {
+    timeframe: "2 years",
+    title: "Administrative Head",
+    organization: "Satellite Club · Cummins College of Engineering",
+    description:
+      "Coordinated club administration and supported the planning of student-led technical activities for two years.",
+  },
+  {
+    timeframe: "B.Tech",
+    title: "Student Committee Member",
+    organization: "Curriculum and Syllabus Review Committee",
+    description:
+      "Represented the student perspective during the Computer Engineering curriculum and syllabus review process.",
+  },
+  {
+    timeframe: "3 years",
+    title: "Organizing Committee Member",
+    organization: "Annual Inter-Collegiate Sports Event",
+    description:
+      "Supported the planning and delivery of the college's annual inter-collegiate sports event for three years.",
+  },
+  {
+    timeframe: "75+ participants",
+    title: "Hackathon Organizer",
+    organization: "Front-End Development Hackathon",
+    description:
+      "Organized a front-end development hackathon that brought together more than 75 student participants.",
   },
 ];
 

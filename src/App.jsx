@@ -5,6 +5,7 @@ import {
   education,
   experiences,
   hackathons,
+  leadership,
   posters,
   profile,
   projectDomains,
@@ -30,6 +31,7 @@ const cvSections = [
   { id: "cv-projects", label: "Selected Projects" },
   { id: "publications", label: "Publications" },
   { id: "cv-achievements", label: "Honors & Achievements" },
+  { id: "leadership", label: "Leadership & Service" },
   { id: "skills", label: "Technical Skills" },
 ];
 
@@ -1081,8 +1083,26 @@ function CVPage() {
           <a className="cv-section__more" href="/hackathons">View hackathon details <ArrowUpRight size={14} /></a>
         </section>
 
+        <section className="cv-section" id="leadership">
+          <h2><span>06</span> Leadership &amp; Service</h2>
+          <div className="cv-leadership-list">
+            {leadership.map((item) => (
+              <article key={`${item.title}-${item.organization}`}>
+                <p className="cv-entry__date">{item.timeframe}</p>
+                <div>
+                  <div className="cv-entry__heading">
+                    <h3>{item.title}</h3>
+                    <strong>{item.organization}</strong>
+                  </div>
+                  <p>{item.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section className="cv-section cv-section--skills" id="skills">
-          <h2><span>06</span> Technical Skills</h2>
+          <h2><span>07</span> Technical Skills</h2>
           <div className="cv-skill-list">
             {skills.slice(0, 5).map((group) => (
               <div key={group.title}>
