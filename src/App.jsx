@@ -1,6 +1,7 @@
 import { ArrowUpRight, CircleUserRound, Github, GraduationCap, Linkedin, Mail, Menu, PenLine, X } from "lucide-react";
 import { createContext, useContext, useEffect, useId, useMemo, useRef, useState } from "react";
 import {
+  achievements,
   education,
   experiences,
   hackathons,
@@ -28,7 +29,7 @@ const cvSections = [
   { id: "experience", label: "Experience" },
   { id: "cv-projects", label: "Selected Projects" },
   { id: "publications", label: "Publications" },
-  { id: "cv-achievements", label: "Achievements" },
+  { id: "cv-achievements", label: "Honors & Achievements" },
   { id: "skills", label: "Technical Skills" },
 ];
 
@@ -1068,15 +1069,15 @@ function CVPage() {
         </section>
 
         <section className="cv-section" id="cv-achievements">
-          <h2><span>05</span> Awards &amp; Achievements</h2>
-          <div className="cv-achievement-list">
-            {hackathons.map((item) => (
-              <article key={item.title}>
-                <span>{item.timeframe.split(" · ")[0]}</span>
-                <div><h3>{item.achievement}</h3><p>{item.title}</p></div>
-              </article>
+          <h2><span>05</span> Honors &amp; Achievements</h2>
+          <ul className="cv-achievement-list">
+            {achievements.map((item) => (
+              <li key={`${item.year}-${item.description}`}>
+                <span>{item.year}</span>
+                <p>{item.description}</p>
+              </li>
             ))}
-          </div>
+          </ul>
           <a className="cv-section__more" href="/hackathons">View hackathon details <ArrowUpRight size={14} /></a>
         </section>
 

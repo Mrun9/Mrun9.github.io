@@ -384,6 +384,49 @@ export const hackathons = [
   },
 ];
 
+export const achievements = [
+  {
+    year: "2024 - 2026",
+    description:
+      "Published five AI/ML research papers through Springer, SciTePress, and arXiv, including four first-author publications.",
+  },
+  {
+    year: "2024 - 2026",
+    description:
+      "Presented research at three academic symposia hosted by the University of Notre Dame and the University of Florida.",
+  },
+  {
+    year: "2025",
+    description:
+      "Graduated with a B.Tech in Computer Engineering and Honors in Data Science & Machine Learning, earning an 8.7/10 GPA.",
+  },
+  {
+    year: "2026",
+    description:
+      "Selected as a finalist at DataFest 2026 for translating complex healthcare datasets into clear analytical findings.",
+  },
+  {
+    year: "2024",
+    description:
+      "Selected as a finalist in the All India Women Hackathon for designing a haptic Braille-learning application for children.",
+  },
+  {
+    year: "2023",
+    description:
+      "Won Smart India Hackathon after placing among the top five teams with a dark-web URL enumeration solution built during a 36-hour sprint.",
+  },
+  {
+    year: "2023",
+    description:
+      "Won the Mined Hackathon with a USD-INR forecasting system combining historical exchange-rate data and sentiment analysis.",
+  },
+  {
+    year: "2022",
+    description:
+      "Won Aavishkar at both the zonal and collegiate levels with an IoT system for monitoring and reducing electricity consumption.",
+  },
+];
+
 export const posters = [
   {
     title: "Solving Captchas via Computer Vision Techniques in Multimodal LLMs",
