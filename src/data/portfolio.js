@@ -132,6 +132,10 @@ export const experiences = [
     organization: "KPMG India",
     description:
       "Built enterprise AI applications using Azure OpenAI, LangChain, GitHub Copilot, and Azure cloud services to automate software development workflows, enabling real-time monitoring, insight generation, and intelligent SDLC automation. Developed a domain-independent platform of multi-agent workflows for automated data understanding, autonomous KPI discovery, insight generation, and predictive analytics.",
+    cvBullets: [
+      "Built enterprise AI applications with Azure OpenAI, LangChain, GitHub Copilot, and Azure services, automating software development workflows and enabling real-time monitoring.",
+      "Developed a domain-independent multi-agent analytics platform that automated data understanding, KPI discovery, insight generation, and predictive analysis.",
+    ],
   },
   {
     date: "Apr 2026 - Present",
@@ -139,6 +143,10 @@ export const experiences = [
     organization: "Prepify - Evy",
     description:
       "Building GenAI product features for Evy, a UF student-founded platform for AI-powered candidate interviews. I work with LLM prompting, agentic workflows, evals, and AI coding agents, recently focusing on observability dashboards that track latency, token usage, interview quality, hallucinations, guardrails, and unwanted behavior.",
+    cvBullets: [
+      "Build GenAI interview features with LLM prompting, agentic workflows, evaluations, and AI coding agents, supporting an AI-powered candidate interview platform.",
+      "Develop observability dashboards that track latency, token usage, interview quality, hallucinations, guardrails, and unwanted model behavior.",
+    ],
     links: [{ label: "Visit Evy", href: "https://evy.io/" }],
   },
   {
@@ -147,6 +155,10 @@ export const experiences = [
     organization: "SERMOS Lab - University of Florida",
     description:
       "Supporting a transdisciplinary AI and data science lab that builds smart, equitable, resilient mobility systems. I read research papers, benchmark models, assist PhD research, and currently work with spatio-temporal models and transformer-based methods.",
+    cvBullets: [
+      "Review research literature and benchmark models to support PhD-led work on smart, equitable, and resilient mobility systems.",
+      "Develop and evaluate spatio-temporal and transformer-based methods for transportation-focused AI research.",
+    ],
     links: [
       {
         label: "Visit SERMOS Lab",
@@ -160,6 +172,11 @@ export const experiences = [
     organization: "Center for Research Computing - University of Notre Dame, IN",
     description:
       "Created and deployed an AI agent for data acquisition from dark marketplaces. The hardest piece was automating puzzle image-based CAPTCHA solving, which led me into multimodal model evaluation, image preprocessing, and a research presentation at Notre Dame.",
+    cvBullets: [
+      "Built and deployed an AI agent for data acquisition from dark marketplaces, automating a complex research collection workflow.",
+      "Developed a computer-vision pipeline for puzzle-image CAPTCHA solving within a multimodal agent workflow.",
+      "Evaluated multimodal models and image-preprocessing methods, then presented the findings at Notre Dame's Summer Undergraduate Research Symposium.",
+    ],
     links: [
       { label: "Visit CRC", href: "https://crc.nd.edu/" },
       {

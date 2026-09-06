@@ -997,7 +997,11 @@ function CVPage() {
                     <h3>{item.title}</h3>
                     <strong>{item.organization}</strong>
                   </div>
-                  <p className="cv-entry__description">{item.description}</p>
+                  <ul className="cv-entry__bullets">
+                    {(item.cvBullets || [item.description]).map((bullet) => (
+                      <li key={bullet}>{bullet}</li>
+                    ))}
+                  </ul>
                   {item.links ? (
                     <div className="cv-inline-links">
                       {item.links.map((link) => (
